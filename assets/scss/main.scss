@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@200..800&display=swap');
+
+/* Modules */
+//@import 'photographer.scss';
+
+// colors
+$yellow: #FFD15B;
+$light-black: #1B1B1B;
+$black: #000000;
+$white: #FFFFFF;
+$grey: #7A7A7A;
+$light-grey: #C6C6C6;
+
+// fonts
+$title: 'Anton', sans-serif;
+$text: 'Manrope', sans-serif;
+
+// font-size
+$size--12: 0.75rem; //12px
+$size--14: 0.875rem; //14px
+$size--16: 1rem; //16px
+$size--18: 1.125rem; //18px
+$size--21: 1.313rem; //21px
+$size--44: 2.75rem; //44px
+
+//font-weight
+$weight-bold: 700;
+$weight-medium: 500;
+$weight-regular: 400;
+$weight-thin: 300;
+
+//background-image
+$image-bg: '../../img/bg1.jpg';
+
+* {
+  margin: 0;
+}
+
+h1 {
+  font-family: $title;
+  font-size: $size--44;
+  font-weight: $weight-regular;
+  color: $yellow;
+}
+
+.header {
+  //background-image: url($image-bg);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  &__home {
+    z-index: 10;
+    position: relative;
+    &__logo {
+      margin: 4rem 0 10rem 6rem;
+    }
+  }
+  &__title {
+    z-index: 10;
+    position: relative;
+    text-align: center;
+    margin: 0 0 3rem 0;
+  }
+  &__search {
+    z-index: 10;
+    position: relative;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+    text-align: center;
+    border-radius: 11px;
+    width: 60%;
+    height: 4.5rem;
+    background-color: $white;
+    &__bar {
+      border: none;
+    }
+    &__glass {
+      z-index: 10;
+      position: relative;
+      width: 2rem;
+      height: 2rem;
+      color: $white;
+      background-color: $light-black;
+      border-radius: 10px;
+    }
+  }
+  &__img {
+    position: absolute;
+    top: -2.1rem;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
