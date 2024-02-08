@@ -71,7 +71,7 @@ h1 {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 6rem 4rem 6rem;
+  padding: 1rem 6rem 3rem 6rem;
 }
 .sort__filter__categories {
   margin-right: 3rem;
@@ -95,6 +95,102 @@ h1 {
 
 .hero {
   background-color: rgba(198, 198, 198, 0.4);
+  padding: 0 6rem 4rem 6rem;
+  display: flex;
+  gap: 4rem;
+}
+.hero__container {
+  background-color: #FFFFFF;
+  border-radius: 21px;
+  width: 24rem;
+  height: 45rem;
+  box-shadow: 0 4px 34px 30px rgba(0, 0, 0, 0.04);
+}
+.hero__container__img {
+  width: 100%;
+  height: 16rem;
+}
+.hero__container__img__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 21px 21px 0 0;
+}
+.hero__container__recipe {
+  position: absolute;
+  margin: 0 1rem 2rem 1rem;
+}
+.hero__container__recipe__time {
+  z-index: 1;
+  position: relative;
+  top: -15rem;
+  left: 18rem;
+  color: #000000;
+  font-family: "Manrope", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  background-color: #FFD15B;
+  border-radius: 14px;
+  width: 4rem;
+  height: 1.6rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero__container__recipe__title {
+  font-family: "Anton", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
+}
+.hero__container__recipe__step {
+  width: 100%;
+  height: auto;
+}
+.hero__container__recipe__step__title {
+  font-family: "Manrope", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #7A7A7A;
+  text-transform: uppercase;
+  letter-spacing: 0.15rem;
+}
+.hero__container__recipe__step__cook {
+  width: 22rem;
+  height: 5rem;
+  margin: 0.6rem 0 1rem 0;
+  font-family: "Manrope", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #000000;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.hero__container__recipe__element {
+  border-spacing: 0 1rem;
+}
+.hero__container__recipe__element__title {
+  font-family: "Manrope", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #7A7A7A;
+  text-transform: uppercase;
+  letter-spacing: 0.15rem;
+}
+.hero__container__recipe__element__ingredient {
+  font-family: "Manrope", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #000000;
+  text-align: left;
+}
+.hero__container__recipe__element__ingredient__quantity {
+  font-family: "Manrope", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #7A7A7A;
+  text-align: left;
 }
 
 /*# sourceMappingURL=main.css.map */
