@@ -17,14 +17,50 @@
         DU QUOTIDIEN, SIMPLES ET DÉLICIEUSES</h1>
     <div class="header__search">
         <label for="recipe-search"></label>
-        <input class="header__search__bar" type="search" id="recipe-search" name="">
-        <svg class="header__search__glass w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-        </svg>
+        <input placeholder="Rechercher une recette, un ingrédient, ..." class="header__search__bar" type="search" id="recipe-search" name="Rechercher une recette, un ingrédient, ...">
+        <div class="header__search__container">
+            <svg class="header__search__container__glass w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+            </svg>
+        </div>
     </div>
-    <img class="header__img" src="img/bg1.jpg" alt="Plat de présentation">
 </header>
+<section class="sort">
+    <aside class="sort__filter">
+        <label for="filter-ingredient" class=""></label>
+        <select id="filter-ingredient" class="sort__filter__categories">
+            <option value="byIngredient">Ingrédients</option>
+        </select>
+        <select id="filter-device" class="sort__filter__categories">
+            <option value="byDevice">Appareils</option>
+        </select>
+        <select id="filter-stuff" class="sort__filter__categories">
+            <option value="byStuff">Ustensiles</option>
+        </select>
+    </aside>
+    <p id="counter-recipes" class="sort__counter">1500 recettes</p>
+</section>
 <main class="hero">
+    <article class="hero__recipe">
+        <img class="hero__recipe__img" src="" alt="">
+        <section class="hero__recipe__text">
+            <h2>Limonade de Coco</h2>
+            <div>
+                Recette
+                <p>Mettre les glaçons à votre goût dans le blender, Ajouter le lait  la crème de coco, le jus de 2 citrons et le sucre ensemble. Mixer jusqu'à obtenir la consistance désirée.</p>
+            </div>
+            <div>
+                Ingrédients
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                Faudrait pas faire un tableau ici ?
+            </div>
+        </section>
+    </article>
 </main>
 <script type="module" src="scripts/js/index.js"></script>
 </body>

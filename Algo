@@ -1,0 +1,117 @@
+Algorithme déplacement(position_x , position_y)
+Variable
+    sens ← “” : CHAÎNE DE CARACTÈRES
+Début
+    sens ← entrer()
+    Si sens == “Haut” OU sens == “Bas” OU sens == “Droite” OU sens == “Gauche” :
+        Si sens == “Haut” :
+            position_y = position_y + 1
+        Fin Si
+        Si sens == “Bas” :
+            position_y = position_y - 1
+        Fin Si
+        Si sens == “Droite” :
+            position_x = position_x + 1
+        Fin Si
+        Si sens == “Gauche” :
+            position_x = position_x - 1
+        Fin Si
+    Sinon
+        afficher “L’entrée n’est pas correcte”
+    Fin Si
+Fin
+
+Algorithme ramasser
+Variable
+    joueur_position_x ← 0 : ENTIER
+    joueur_position_y ← 0 : ENTIER
+    arrivée_position_x ← 5 : ENTIER
+    arrivée_position_y ← 5 : ENTIER
+    clés[n] : TABLEAU CHAÎNE DE CARACTÈRES
+    déplacement ← 0 : ENTIER
+    max_déplacement ← 30n : ENTIER
+Début
+    Tant Que joueur_position_x != arrivée_position_x ET joueur_position_y != arrivée_position_y ET clés.taille() != n ET déplacement < max_déplacement :
+        déplacement(joueur_position_x, joueur_position_y)
+        ramasser(clés, joueur_position_x, joueur_position_y)
+    Fin Tant Que
+Fin
+
+Algorithme Tri(tableau)
+    taille ← Taille du tableau
+    Pour i allant de 0 jusqu’à taille - 1 :
+        Pour j allant de 0 jusqu’à taille - 1 - 1 :
+            Si tableau[j+1] < tableau[j] :
+                echanger(tableau[j+1], tableau[j])
+            Fin Si
+        Fin Pour
+    Fin Pour
+Fin
+
+La fonction  déplacement  :
+
+complexité temporelle : O(1)
+La complexité est constante, il n’y a aucune boucle ni aucune fonction récursive.
+
+complexité spatiale : O(1)
+La mémoire n’est pas affectée par cet algorithme.
+
+La fonction  ramasser  :
+
+complexité temporelle : O(30n)
+Au pire des cas, la boucle va itérer 30 x n fois.
+
+complexité spatiale : O(n)
+La complexité est linéaire, le tableau aura au maximum n cases.
+
+La fonction  tri  :
+
+complexité temporelle : O(n2)
+Il y a deux boucles imbriquées qui itèrent n fois, donc nous avons au maximum n x n itérations.
+
+complexité spatiale : O(1)
+La mémoire n’est pas affectée par cet algorithme, car la taille du tableau ne change pas.
+
+
+
+Algorithme nombre_de_poupées(poupée)
+Début
+    Si poupée contient une autre poupée :
+        Retourner 1 + nombre_de_poupées(poupée à l’intérieur)
+    Sinon
+        Retourner 1
+    Fin Si
+Fin
+
+Algorithme fibonacci(n)
+Début
+    Si n <= 1:
+        Retourner 1
+    Sinon
+        Retourner fibonacci(n - 1) + fibonacci(n - 2)
+    Fin Si
+Fin
+
+Algorithme fibonacci(n)
+Variable
+    a ← 0 : ENTIER
+    b ← 1 : ENTIER
+    c ← 0 : ENTIER
+Début
+    Pour i allant de 1 jusqu’à n:
+        c ← a + b
+        a ← b
+        b ← c
+    Retourner b
+Fin
+
+Algorithme freeze(n)
+    Si n == 0 :
+        arrêter l’appel recursive
+    Fin Si
+
+    Afficher n
+    attendre(1)
+    freeze(n - 1)
+Fin
+

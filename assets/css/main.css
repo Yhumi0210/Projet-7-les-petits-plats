@@ -12,56 +12,89 @@ h1 {
 }
 
 .header {
+  background-image: url("../../img/bg1.jpg");
+  background-size: cover;
+  background-position: center;
   width: 100%;
-  height: 100%;
+  height: 50rem;
   display: flex;
   flex-direction: column;
 }
-.header__home {
-  z-index: 10;
-  position: relative;
-}
 .header__home__logo {
-  margin: 4rem 0 10rem 6rem;
+  margin: 4rem 0 13rem 6rem;
+  width: 10%;
+  height: auto;
 }
 .header__title {
-  z-index: 10;
-  position: relative;
   text-align: center;
   margin: 0 0 3rem 0;
 }
 .header__search {
-  z-index: 10;
-  position: relative;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
-  justify-items: center;
-  text-align: center;
+  display: flex;
   border-radius: 11px;
   width: 60%;
   height: 4.5rem;
   background-color: #FFFFFF;
+  justify-content: center;
+  align-self: center;
 }
 .header__search__bar {
+  margin-left: 1rem;
   border: none;
+  width: 100%;
+  border-radius: 11px;
+  font-family: "Manrope", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #7A7A7A;
 }
-.header__search__glass {
-  z-index: 10;
-  position: relative;
-  width: 2rem;
-  height: 2rem;
-  color: #FFFFFF;
+.header__search__container {
+  display: flex;
+  width: 54px;
+  height: 50px;
   background-color: #1B1B1B;
   border-radius: 10px;
+  align-self: center;
+  margin-right: 0.8rem;
+  justify-content: center;
+  align-items: center;
 }
-.header__img {
-  position: absolute;
-  top: -2.1rem;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+.header__search__container__glass {
+  color: #FFFFFF;
+  width: 29px;
+  height: 30px;
+}
+
+.sort {
+  background-color: rgba(198, 198, 198, 0.4);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 6rem 4rem 6rem;
+}
+.sort__filter__categories {
+  margin-right: 3rem;
+  padding: 0 1rem 0 1rem;
+  border: none;
+  border-radius: 11px;
+  background-color: #FFFFFF;
+  width: 12rem;
+  height: 3.5rem;
+  font-family: "Manrope", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: black;
+}
+.sort__counter {
+  text-align: center;
+  font-family: "Anton", sans-serif;
+  font-size: 1.313rem;
+  font-weight: 400;
+}
+
+.hero {
+  background-color: rgba(198, 198, 198, 0.4);
 }
 
 /*# sourceMappingURL=main.css.map */
