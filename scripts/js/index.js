@@ -7,5 +7,5 @@ console.log(recipes)
 
 function getRecipes() {
     // je peux directement construire le DOM en ajoutant les recettes en bouclant pour chaque
-    // coucou
+    console.log("bonjour")
 }
