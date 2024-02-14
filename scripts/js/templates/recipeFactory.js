@@ -1,4 +1,4 @@
-import {recipes} from '../dataBase/recipes'
+import {recipes} from '../dataBase/recipes.js'
 
 export function recipeTemplate(recipe) {
     function getRecipeDOM() {
