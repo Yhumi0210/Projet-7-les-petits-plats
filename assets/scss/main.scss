@@ -131,9 +131,12 @@ h1 {
 
 .hero {
   background-color: $light-grey;
-  padding: 0 6rem 4rem 6rem;
   display: flex;
+  flex-wrap: wrap;
   gap: 4rem;
+  height: 100%;
+  justify-content: center;
+  padding-bottom: 4rem;
   &__container {
     background-color: $white;
     border-radius: 21px;

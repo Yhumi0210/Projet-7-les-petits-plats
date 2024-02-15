@@ -1,4 +1,4 @@
-import { recipes } from '../json/recipes.js'
+import { recipes } from '../dataBase/recipes.js'
 // Variables
 // const response = await fetch('./scripts/json/recipes.js')
 // const data = await response.json()
