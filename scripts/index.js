@@ -1,6 +1,6 @@
-import { recipes } from '../dataBase/recipes.js'
-import { getResultSearch } from '../functions/search.js'
-import { recipeTemplate } from '../templates/recipeFactory.js'
+import { recipes } from './dataBase/recipes.js'
+import { getResultSearch } from './functions/search.js'
+import { recipeTemplate } from './templates/recipeFactory.js'
 
 
 console.log(recipes)
