@@ -1,14 +1,6 @@
 import { recipes } from './dataBase/recipes.js'
 import { recipeTemplate } from './templates/recipeFactory.js'
 
-
-console.log(recipes)
-
-// const myRecipes = recipes.find((recipe) => {
-//     return recipe.id
-// })
-// console.log(myRecipes)
-
 getRecipes()
 
 function getRecipes() {
