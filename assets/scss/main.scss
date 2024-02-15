@@ -79,6 +79,9 @@ h1 {
       font-size: $size--16;
       font-weight: $regular;
       color: $grey;
+      &:focus{
+        outline: none;
+      }
     }
     &__container {
       display: flex;

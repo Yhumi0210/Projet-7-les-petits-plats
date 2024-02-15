@@ -48,6 +48,9 @@ h1 {
   font-weight: 400;
   color: #7A7A7A;
 }
+.header__search__bar:focus {
+  outline: none;
+}
 .header__search__container {
   display: flex;
   width: 54px;
