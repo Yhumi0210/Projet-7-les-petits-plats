@@ -5,7 +5,6 @@ getRecipes()
 
 function getRecipes() {
 
-    // recipeTemplate()
     const cardRecipe = document.querySelector('.hero')
     cardRecipe.innerHTML = ''
 
