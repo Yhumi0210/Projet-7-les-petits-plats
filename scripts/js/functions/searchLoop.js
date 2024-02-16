@@ -4,19 +4,19 @@ import { recipeTemplate } from '../templates/recipeFactory.js'
 // Fonction pour filtrer les recettes en fonction de la recherche
 function searchRecipes(searchText) {
     const searchFilteredRecipes = []
-    for (const recipe of recipes) {
-        const lowerSearchText = searchText.toLowerCase()
-        if (recipe.name.toLowerCase().includes(lowerSearchText)) {
-            searchFilteredRecipes.push(recipe)
-        } else {
-            for (const ingredient of recipe.ingredients) {
-                if (ingredient.ingredient.toLowerCase().includes(lowerSearchText)) {
-                    searchFilteredRecipes.push(recipe)
-                    break
-                }
+    const lowerSearchText = searchText.toLowerCase()
+    if (searchText.length >= 3) {
+        for (const recipe of recipes) {
+            if (recipe.name.toLowerCase().includes(lowerSearchText)) {
+                searchFilteredRecipes.push(recipe)
+            } else if (recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(lowerSearchText))) {
+                searchFilteredRecipes.push(recipe)
+            } else if (recipe.description.toLowerCase().includes(lowerSearchText)) {
+                searchFilteredRecipes.push(recipe)
             }
         }
     }
+
     return searchFilteredRecipes
 }
 

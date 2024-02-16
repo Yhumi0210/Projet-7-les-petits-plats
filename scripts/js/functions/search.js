@@ -3,8 +3,11 @@ import { recipeTemplate } from '../templates/recipeFactory.js'
 
 // Fonction pour filtrer les recettes en fonction de la recherche
 function searchRecipes(searchText) {
+    if (searchText.length >= 3) {}
     const searchFilteredRecipes = recipes.filter(recipe => {
-        return recipe.name.toLowerCase().includes(searchText.toLowerCase()) || recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(searchText.toLowerCase()))
+        return recipe.name.toLowerCase().includes(searchText.toLowerCase()) 
+            || recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(searchText.toLowerCase())) 
+            || recipe.description.toLowerCase().includes(searchText.toLowerCase())
     })
     return searchFilteredRecipes
 }
