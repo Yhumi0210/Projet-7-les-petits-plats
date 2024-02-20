@@ -110,18 +110,27 @@ h1 {
   align-items: center;
   padding: 1rem 6rem 3rem 6rem;
   &__filter {
+    display: flex;
+    align-items: center;
     &__categories {
       margin-right: 3rem;
       padding: 0 1rem 0 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       border: none;
       border-radius: 11px;
       background-color: $white;
-      width: 12rem;
+      width: 10rem;
       height: 3.5rem;
       font-family: $text;
       font-size: $size--16;
       font-weight: $medium;
       color: black;
+      &__arrow {
+        width: 1.5rem;
+        height: auto;
+      }
     }
   }
   &__counter {
@@ -132,6 +141,97 @@ h1 {
   }
 }
 
+.choices-ingredient {
+  position: absolute;
+  top: 54rem;
+  left: 6rem;
+  z-index: 2;
+  width: 12rem;
+  height: 15rem;
+  border-radius: 0 0 11px 11px;
+  background-color: $white;
+  color: $light-black;
+  font-family: $text;
+  font-size: $size--14;
+  font-weight: $regular;
+}
+.choices-device {
+  position: absolute;
+  top: 54rem;
+  left: 21rem;
+  z-index: 2;
+  width: 12rem;
+  height: 15rem;
+  border-radius: 0 0 11px 11px;
+  background-color: $white;
+  color: $light-black;
+  font-family: $text;
+  font-size: $size--14;
+  font-weight: $regular;
+}
+.choices-stuff {
+  position: absolute;
+  top: 54rem;
+  left: 36rem;
+  z-index: 2;
+  width: 12rem;
+  height: 15rem;
+  border-radius: 0 0 11px 11px;
+  background-color: $white;
+  color: $light-black;
+  font-family: $text;
+  font-size: $size--14;
+  font-weight: $regular;
+}
+.search-mini {
+  display: flex;
+  margin: 0 1rem 1rem 1rem;
+  width: 80%;
+  height: 2rem;
+  justify-content: center;
+  align-self: center;
+  border: 1px solid #c6c6c6;
+  &__bar {
+    border: none;
+    width: 100%;
+    margin-left: 0.2rem;
+    font-family: $text;
+    font-size: $size--14;
+    font-weight: $regular;
+    color: $grey;
+    &:focus{
+      outline: none;
+    }
+  }
+  &__glass, &__cross {
+    width: 1.2rem;
+    height: auto;
+    color: $grey;
+    margin-right: 0.2rem;
+  }
+  &__result {
+    width: 100%;
+    height: 12rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    &__choices {
+      font-family: $text;
+      font-weight: $regular;
+      font-size: $size--14;
+      color: $light-black;
+      margin: 0.5rem 1rem 0.5rem 1rem;
+    }
+  }
+}
+.yellow-choice {
+  position: absolute;
+  top: 3rem;
+  background-color: $yellow;
+  width: 83.5%;
+  margin: 0;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+}
+
 .hero {
   background-color: $light-grey;
   display: flex;
@@ -139,7 +239,7 @@ h1 {
   gap: 4rem;
   height: 100%;
   justify-content: center;
-  padding-bottom: 4rem;
+  padding: 0 6rem 4rem 6rem;
   &__container {
     background-color: $white;
     border-radius: 21px;

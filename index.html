@@ -27,16 +27,90 @@
 </header>
 <section class="sort">
     <aside class="sort__filter">
-        <label for="filter-ingredient" class=""></label>
-        <select id="filter-ingredient" class="sort__filter__categories">
-            <option value="byIngredient">Ingrédients</option>
-        </select>
-        <select id="filter-device" class="sort__filter__categories">
-            <option value="byDevice">Appareils</option>
-        </select>
-        <select id="filter-stuff" class="sort__filter__categories">
-            <option value="byStuff">Ustensiles</option>
-        </select>
+        <div id="filter-ingredient" class="sort__filter__categories">
+            Ingrédients
+            <div id="filter-choice-ingredient" class="choices-ingredient">
+                <div class="search-mini">
+                    <label for="ingredient-search"></label>
+                    <input placeholder="" class="search-mini__bar" type="search" id="ingredient-search" name="Rechercher un ingrédient">
+                    <svg class="search-mini__cross w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                    </svg>
+                    <svg class="search-mini__glass w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-widli="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                    </svg>
+                </div>
+                <div id="result-search-ingredient" class="search-mini__result">
+                    <p class="search-mini__result__choices">Lait de coco</p>
+                    <p class="search-mini__result__choices">Lait de coco</p>
+                    <p class="search-mini__result__choices">Lait de coco</p>
+                    <p class="search-mini__result__choices">Lait de coco</p>
+                    <p class="search-mini__result__choices yellow-choice">Lait de coco</p>
+                    <p class="search-mini__result__choices">Lait de coco</p>
+                    <p class="search-mini__result__choices">Lait de coco</p>
+                    <p class="search-mini__result__choices">Lait de coco</p>
+                    <p class="search-mini__result__choices">Lait de coco</p>
+                    <p class="search-mini__result__choices">Lait de coco</p>
+                </div>
+            </div>
+            <svg class="sort__filter__categories__arrow w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+            </svg>
+        </div>
+        <div id="filter-device" class="sort__filter__categories">
+            Appareils
+<!--            <div id="filter-choice-device" class="choices-device">-->
+<!--                <div class="search-mini">-->
+<!--                    <label for="ingredient-search"></label>-->
+<!--                    <input placeholder="" class="search-mini__bar" type="search" id="ingredient-search" name="Rechercher un ingrédient">-->
+<!--                    <svg class="search-mini__glass w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-widli="1.5" stroke="currentColor">-->
+<!--                        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />-->
+<!--                    </svg>-->
+<!--                </div>-->
+<!--                <div id="result-search-device" class="search-mini__result">-->
+<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
+<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
+<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
+<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
+<!--                    <p class="search-mini__result__choices yellow-choice">Lait de coco</p>-->
+<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
+<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
+<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
+<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
+<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
+<!--                </div>-->
+<!--            </div>-->
+            <svg class="sort__filter__categories__arrow w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+            </svg>
+        </div>
+        <div id="filter-stuff" class="sort__filter__categories">
+            Ustensiles
+<!--            <div id="filter-choice-stuff" class="choices-stuff">-->
+<!--                <div class="search-mini">-->
+<!--                    <label for="ingredient-search"></label>-->
+<!--                    <input placeholder="" class="search-mini__bar" type="search" id="ingredient-search" name="Rechercher un ingrédient">-->
+<!--                    <svg class="search-mini__glass w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-widli="1.5" stroke="currentColor">-->
+<!--                        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />-->
+<!--                    </svg>-->
+<!--                </div>-->
+<!--                <div id="result-search-stuff" class="search-mini__result">-->
+<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
+<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
+<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
+<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
+<!--                    <p class="search-mini__result__choices yellow-choice">Lait de coco</p>-->
+<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
+<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
+<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
+<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
+<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
+<!--                </div>-->
+<!--            </div>-->
+            <svg class="sort__filter__categories__arrow w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+            </svg>
+        </div>
 <!--        Construire un sélecteur avec des div plutot que select option-->
     </aside>
     <p id="counter-recipes" class="sort__counter">1500 recettes</p>
