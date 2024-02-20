@@ -1,7 +1,9 @@
 import { recipes } from './dataBase/recipes.js'
 import { recipeTemplate } from './templates/recipeFactory.js'
+import { filterTemplate } from "./functions/filter-search.js"
 
 getRecipes()
+filterTemplate()
 
 function getRecipes() {
 
