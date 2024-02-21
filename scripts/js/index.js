@@ -1,9 +1,9 @@
 import { recipes } from './dataBase/recipes.js'
 import { recipeTemplate } from './templates/recipeFactory.js'
-import { filterTemplate } from "./functions/filter-search.js"
+import { filterTemplate } from './functions/filter-search.js'
 
 getRecipes()
-filterTemplate()
+getFilters()
 
 function getRecipes() {
 
@@ -17,6 +17,24 @@ function getRecipes() {
     }
 }
 
+function getFilters()
+{
+    const cardFilter = document.querySelector('.sort__filter')
+    cardFilter.innerHTML = ''
+
+    const allIngredients = recipes.reduce((ingredients, recipe) => {
+        recipe.ingredients.forEach(ingredient => {
+            if (!ingredients.includes(ingredient.ingredient)) {
+                ingredients.push(ingredient.ingredient)
+            }
+        })
+        return ingredients
+    }, [])
+
+    const filterModel = filterTemplate()
+    const filterDOM = filterModel.getFilterDOM(allIngredients)
+    cardFilter.appendChild(filterDOM)
+}
 
 // les filtres : dans le menu déroulant, l'ingrédient cliqué apparait en jaune et s'ajoute en tag sous la liste (index 0)
 // les filtres se créés en fonction des recettes déjà affichées et à partir des appareils etc de recipes.js

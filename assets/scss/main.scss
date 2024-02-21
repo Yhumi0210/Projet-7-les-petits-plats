@@ -8,7 +8,7 @@ $yellow: #FFD15B;
 $light-black: #1B1B1B;
 $black: #000000;
 $white: #FFFFFF;
-$grey: #7A7A7A;
+$grey: rgb(122, 122, 122);
 $light-grey: rgba(198, 198, 198, 0.4);
 
 // fonts
@@ -128,8 +128,9 @@ h1 {
       font-weight: $medium;
       color: black;
       &__arrow {
-        width: 1.5rem;
-        height: auto;
+        align-self: center;
+        font-size: 1rem;
+        margin-right: 0.2rem;
       }
     }
   }
@@ -203,10 +204,20 @@ h1 {
       outline: none;
     }
   }
-  &__glass, &__cross {
-    width: 1.2rem;
-    height: auto;
+  &__glass {
+    align-self: center;
+    font-size: 0.8rem;
+    font-weight: 100;
     color: $grey;
+    letter-spacing: 0.2rem;
+    margin-right: 0.2rem;
+  }
+  &__cross {
+    align-self: center;
+    font-size: 0.6rem;
+    font-weight: 100;
+    color: $grey;
+    letter-spacing: 0.2rem;
     margin-right: 0.2rem;
   }
   &__result {
