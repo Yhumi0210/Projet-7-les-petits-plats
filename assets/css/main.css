@@ -192,7 +192,7 @@ h1 {
   width: 100%;
   height: 12rem;
   text-overflow: ellipsis;
-  overflow: hidden;
+  overflow: auto;
 }
 .search-mini__result__choices {
   font-family: "Manrope", sans-serif;

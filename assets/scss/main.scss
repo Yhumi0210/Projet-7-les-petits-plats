@@ -226,7 +226,7 @@ h1 {
     width: 100%;
     height: 12rem;
     text-overflow: ellipsis;
-    overflow: hidden;
+    overflow: auto;
     &__choices {
       font-family: $text;
       font-weight: $regular;

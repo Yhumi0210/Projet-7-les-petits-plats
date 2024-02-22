@@ -1,6 +1,13 @@
 import { recipes } from '../dataBase/recipes.js'
 import { recipeTemplate } from '../templates/recipeFactory.js'
 
+
+// ATTENTION : si ma recherche est vide, je n'ai plus de recherche affiché lorsque j'ai
+// cherché un ingrédient non trouvé, ma page se vide
+// je dois alors effacer ma saisie et mes recettes doivent s'afficher à nouveau
+
+
+
 // Fonction pour filtrer les recettes en fonction de la recherche
 function searchRecipes(searchText) {
     

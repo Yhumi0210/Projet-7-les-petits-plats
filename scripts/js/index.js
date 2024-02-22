@@ -22,17 +22,20 @@ function getFilters()
 
     const allIngredients = recipes.reduce((ingredients, recipe) => {
         recipe.ingredients.forEach(ingredient => {
-            if (!ingredients.includes(ingredient.ingredient)) {
-                ingredients.push(ingredient.ingredient)
+            if (!ingredients.includes(ingredient.ingredient.toLowerCase())) {
+                ingredients.push(ingredient.ingredient.toLowerCase())
             }
         })
         return ingredients
     }, [])
+    // mettre cette fonction dans un autre fichier et appeler normalement
 
     const filterModel = filterTemplate()
     const filterDOM = filterModel.getFilterDOM(allIngredients)
     cardFilter.appendChild(filterDOM)
 }
+
+// comment généraliser la fonction qui fait apparaitre les différents filtres 
 
 document.addEventListener('DOMContentLoaded', function() {
     const ingredientSection = document.getElementById('filter-ingredient')
@@ -43,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (event.target === ingredientSection
             || event.target.classList.contains('sort__filter__categories__arrow')) {
             if (filtersOpened) {
-                closeFilters()
+                closeFilters('filter-ingredient')
                 filtersOpened = false
             } else {
                 getFilters()
@@ -52,22 +55,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     })
 
-    function closeFilters() {
+    function closeFilters(idSection) {
         // Logique pour fermer les filtres
-        const cardFilter = document.querySelector('.choices')
+        const cardFilter = document.querySelector(`#${idSection} .choices`)
         cardFilter.innerHTML = ''
     }
 })
-
-// function getFilters() {
-//     const ingredients = [...new Set(recipes.flatMap(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient)))]
-//     // Obtenez tous les ingrédients uniques
-//
-//     const filterModel = filterTemplate()
-//     const filterDOM = filterModel.getFilterDOM(ingredients)
-//     // Ajoutez le DOM des filtres à l'élément existant .sort__filter__categories
-//     document.querySelector('.sort__filter__categories').appendChild(filterDOM)
-// }
 
 // les filtres : dans le menu déroulant, l'ingrédient cliqué apparait en jaune et s'ajoute en tag sous la liste (index 0)
 // les filtres se créés en fonction des recettes déjà affichées et à partir des appareils etc de recipes.js
