@@ -28,79 +28,27 @@
 </header>
 <section class="sort">
     <aside class="sort__filter">
-<!--        <section id="filter-ingredient" class="sort__filter__categories">-->
-<!--            Ingrédients-->
-<!--            <div id="filter-choice-ingredient" class="choices-ingredient">-->
-<!--                <div class="search-mini">-->
-<!--                    <label for="ingredient-search"></label>-->
-<!--                    <input placeholder="" class="search-mini__bar" type="search" id="ingredient-search" name="Rechercher un ingrédient">-->
-<!--                    <i class="search-mini__cross fa-solid fa-x"></i>-->
-<!--                    <i class="search-mini__glass fa-solid fa-magnifying-glass"></i>-->
-<!--                </div>-->
-<!--                <div id="result-search-ingredient" class="search-mini__result">-->
-<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
-<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
-<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
-<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
-<!--                    <p class="search-mini__result__choices yellow-choice">Lait de coco</p>-->
-<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
-<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
-<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
-<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
-<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <i class="sort__filter__categories__arrow fa-solid fa-chevron-down"></i>-->
-<!--        </section>-->
-<!--        <div id="filter-device" class="sort__filter__categories">-->
-<!--            Appareils-->
-<!--            <div id="filter-choice-device" class="choices-device">-->
-<!--                <div class="search-mini">-->
-<!--                    <label for="ingredient-search"></label>-->
-<!--                    <input placeholder="" class="search-mini__bar" type="search" id="ingredient-search" name="Rechercher un ingrédient">-->
-<!--                    <svg class="search-mini__glass w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-widli="1.5" stroke="currentColor">-->
-<!--                        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />-->
-<!--                    </svg>-->
-<!--                </div>-->
-<!--                <div id="result-search-device" class="search-mini__result">-->
-<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
-<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
-<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
-<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
-<!--                    <p class="search-mini__result__choices yellow-choice">Lait de coco</p>-->
-<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
-<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
-<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
-<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
-<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div id="filter-stuff" class="sort__filter__categories">-->
-<!--            Ustensiles-->
-<!--            <div id="filter-choice-stuff" class="choices-stuff">-->
-<!--                <div class="search-mini">-->
-<!--                    <label for="ingredient-search"></label>-->
-<!--                    <input placeholder="" class="search-mini__bar" type="search" id="ingredient-search" name="Rechercher un ingrédient">-->
-<!--                    <svg class="search-mini__glass w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-widli="1.5" stroke="currentColor">-->
-<!--                        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />-->
-<!--                    </svg>-->
-<!--                </div>-->
-<!--                <div id="result-search-stuff" class="search-mini__result">-->
-<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
-<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
-<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
-<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
-<!--                    <p class="search-mini__result__choices yellow-choice">Lait de coco</p>-->
-<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
-<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
-<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
-<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
-<!--                    <p class="search-mini__result__choices">Lait de coco</p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        Construire un sélecteur avec des div plutot que select option-->
+        <section id="filter-ingredient" class="sort__filter__categories">
+            Ingrédients
+            <div class="choices">
+               <!-- Affiche la recherche du filtre ingrédient -->
+            </div>
+            <i class="sort__filter__categories__arrow fa-solid fa-chevron-down"></i>
+        </section>
+        <section id="filter-device" class="sort__filter__categories">
+            Appareils
+            <div class="choices">
+                <!-- Affiche la recherche du filtre appareils -->
+            </div>
+            <i class="sort__filter__categories__arrow fa-solid fa-chevron-down"></i>
+        </section>
+        <section id="filter-stuff" class="sort__filter__categories">
+            Ustensiles
+            <div class="choices">
+                <!-- Affiche la recherche du filtre ustensiles -->
+            </div>
+            <i class="sort__filter__categories__arrow fa-solid fa-chevron-down"></i>
+        </section>
     </aside>
     <p id="counter-recipes" class="sort__counter">1500 recettes</p>
 </section>

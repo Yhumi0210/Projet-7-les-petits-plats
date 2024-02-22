@@ -3,7 +3,6 @@ import { recipeTemplate } from './templates/recipeFactory.js'
 import { filterTemplate } from './functions/filter-search.js'
 
 getRecipes()
-getFilters()
 
 function getRecipes() {
 
@@ -19,8 +18,7 @@ function getRecipes() {
 
 function getFilters()
 {
-    const cardFilter = document.querySelector('.sort__filter')
-    cardFilter.innerHTML = ''
+    const cardFilter = document.querySelector('.choices')
 
     const allIngredients = recipes.reduce((ingredients, recipe) => {
         recipe.ingredients.forEach(ingredient => {
@@ -35,6 +33,41 @@ function getFilters()
     const filterDOM = filterModel.getFilterDOM(allIngredients)
     cardFilter.appendChild(filterDOM)
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const ingredientSection = document.getElementById('filter-ingredient')
+    let filtersOpened = false
+
+    ingredientSection.addEventListener('click', function(event) {
+        // Vérifie si l'élément cliqué est l'icône "Ingrédients" ou son conteneur
+        if (event.target === ingredientSection
+            || event.target.classList.contains('sort__filter__categories__arrow')) {
+            if (filtersOpened) {
+                closeFilters()
+                filtersOpened = false
+            } else {
+                getFilters()
+                filtersOpened = true
+            }
+        }
+    })
+
+    function closeFilters() {
+        // Logique pour fermer les filtres
+        const cardFilter = document.querySelector('.choices')
+        cardFilter.innerHTML = ''
+    }
+})
+
+// function getFilters() {
+//     const ingredients = [...new Set(recipes.flatMap(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient)))]
+//     // Obtenez tous les ingrédients uniques
+//
+//     const filterModel = filterTemplate()
+//     const filterDOM = filterModel.getFilterDOM(ingredients)
+//     // Ajoutez le DOM des filtres à l'élément existant .sort__filter__categories
+//     document.querySelector('.sort__filter__categories').appendChild(filterDOM)
+// }
 
 // les filtres : dans le menu déroulant, l'ingrédient cliqué apparait en jaune et s'ajoute en tag sous la liste (index 0)
 // les filtres se créés en fonction des recettes déjà affichées et à partir des appareils etc de recipes.js

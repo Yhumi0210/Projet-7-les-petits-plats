@@ -142,47 +142,49 @@ h1 {
   }
 }
 
-.choices-ingredient {
-  position: absolute;
-  top: 54rem;
-  left: 6rem;
-  z-index: 2;
-  width: 12rem;
-  height: 15rem;
-  border-radius: 0 0 11px 11px;
-  background-color: $white;
-  color: $light-black;
-  font-family: $text;
-  font-size: $size--14;
-  font-weight: $regular;
-}
-.choices-device {
-  position: absolute;
-  top: 54rem;
-  left: 21rem;
-  z-index: 2;
-  width: 12rem;
-  height: 15rem;
-  border-radius: 0 0 11px 11px;
-  background-color: $white;
-  color: $light-black;
-  font-family: $text;
-  font-size: $size--14;
-  font-weight: $regular;
-}
-.choices-stuff {
-  position: absolute;
-  top: 54rem;
-  left: 36rem;
-  z-index: 2;
-  width: 12rem;
-  height: 15rem;
-  border-radius: 0 0 11px 11px;
-  background-color: $white;
-  color: $light-black;
-  font-family: $text;
-  font-size: $size--14;
-  font-weight: $regular;
+.choices {
+  .ingredient {
+    position: absolute;
+    top: 54rem;
+    left: 6rem;
+    z-index: 2;
+    width: 12rem;
+    height: 15rem;
+    border-radius: 0 0 11px 11px;
+    background-color: $white;
+    color: $light-black;
+    font-family: $text;
+    font-size: $size--14;
+    font-weight: $regular;
+  }
+  .device {
+    position: absolute;
+    top: 54rem;
+    left: 21rem;
+    z-index: 2;
+    width: 12rem;
+    height: 15rem;
+    border-radius: 0 0 11px 11px;
+    background-color: $white;
+    color: $light-black;
+    font-family: $text;
+    font-size: $size--14;
+    font-weight: $regular;
+  }
+  .stuff {
+    position: absolute;
+    top: 54rem;
+    left: 36rem;
+    z-index: 2;
+    width: 12rem;
+    height: 15rem;
+    border-radius: 0 0 11px 11px;
+    background-color: $white;
+    color: $light-black;
+    font-family: $text;
+    font-size: $size--14;
+    font-weight: $regular;
+  }
 }
 .search-mini {
   display: flex;

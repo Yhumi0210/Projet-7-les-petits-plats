@@ -3,7 +3,6 @@ import {recipes} from '../dataBase/recipes.js'
 export function filterTemplate() {
     function getFilterDOM(ingredients) {
 
-        const sectionFilter = document.createElement('section')
         const divFilterChoice = document.createElement('div')
         const divSearchMini = document.createElement('div')
         const labelSearchMini = document.createElement('label')
@@ -11,10 +10,8 @@ export function filterTemplate() {
         const iconCross = document.createElement('i')
         const iconGlass = document.createElement('i')
         const divSearchResult = document.createElement('div')
-        const iconArrow = document.createElement('i')
 
-        sectionFilter.className = 'sort__filter__categories'
-        divFilterChoice.className = 'choices-ingredient'
+        divFilterChoice.className = 'ingredient'
         divSearchMini.className = 'search-mini'
         labelSearchMini.setAttribute('for', 'ingredient-search')
         inputSearchMini.className = 'search-mini__bar'
@@ -22,7 +19,6 @@ export function filterTemplate() {
         iconCross.className = 'search-mini__cross fa-solid fa-x'
         iconGlass.className = 'search-mini__glass fa-solid fa-magnifying-glass'
         divSearchResult.className = 'search-mini__result'
-        iconArrow.className = 'sort__filter__categories__arrow fa-solid fa-chevron-down'
 
         inputSearchMini.addEventListener('input', () => {
             const searchText = inputSearchMini.value.trim().toLowerCase()
@@ -30,7 +26,7 @@ export function filterTemplate() {
                 const filteredIngredients = ingredients.filter(ingredient => ingredient.toLowerCase().includes(searchText))
                 updateSearchResults(filteredIngredients)
             } else {
-                updateSearchResults(ingredients) // Afficher tous les ingrédients si le texte est vide ou a moins de 3 caractères
+                updateSearchResults(ingredients)
             }
         })
 
@@ -44,16 +40,12 @@ export function filterTemplate() {
             })
         }
 
-        sectionFilter.innerHTML += 'Ingrédients'
-
-        sectionFilter.appendChild(divFilterChoice)
         divFilterChoice.appendChild(divSearchMini)
         divSearchMini.appendChild(labelSearchMini)
         divSearchMini.appendChild(inputSearchMini)
         divSearchMini.appendChild(iconCross)
         divSearchMini.appendChild(iconGlass)
         divFilterChoice.appendChild(divSearchResult)
-        sectionFilter.appendChild(iconArrow)
 
         ingredients.forEach(ingredient => {
             const pOptionElement = document.createElement('p')
@@ -62,8 +54,8 @@ export function filterTemplate() {
             divSearchResult.appendChild(pOptionElement)
         })
 
-        return sectionFilter // Retourne l'élément DOM créé
+        return divFilterChoice
     }
 
-    return {getFilterDOM}
+    return { getFilterDOM }
 }

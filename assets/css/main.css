@@ -108,7 +108,7 @@ h1 {
   font-weight: 400;
 }
 
-.choices-ingredient {
+.choices .ingredient {
   position: absolute;
   top: 54rem;
   left: 6rem;
@@ -122,8 +122,7 @@ h1 {
   font-size: 0.875rem;
   font-weight: 400;
 }
-
-.choices-device {
+.choices .device {
   position: absolute;
   top: 54rem;
   left: 21rem;
@@ -137,8 +136,7 @@ h1 {
   font-size: 0.875rem;
   font-weight: 400;
 }
-
-.choices-stuff {
+.choices .stuff {
   position: absolute;
   top: 54rem;
   left: 36rem;
