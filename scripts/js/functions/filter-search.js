@@ -19,7 +19,7 @@ export function filterTemplate() {
         iconCross.className = 'search-mini__cross fa-solid fa-x'
         iconGlass.className = 'search-mini__glass fa-solid fa-magnifying-glass'
         divSearchResult.className = 'search-mini__result'
-
+        
         inputSearchMini.addEventListener('input', () => {
             const searchText = inputSearchMini.value.trim().toLowerCase()
             if (searchText.length >= 3) {
@@ -29,7 +29,7 @@ export function filterTemplate() {
                 updateSearchResults(ingredients)
             }
         })
-
+//cette fonction sert à update la liste d'ingrédients
         function updateSearchResults(filteredIngredients) {
             divSearchResult.innerHTML = ''
             filteredIngredients.forEach(ingredient => {
@@ -47,6 +47,7 @@ export function filterTemplate() {
         divSearchMini.appendChild(iconGlass)
         divFilterChoice.appendChild(divSearchResult)
 
+        // cette fonction sert à afficher constamment les ingrédients
         ingredients.forEach(ingredient => {
             const pOptionElement = document.createElement('p')
             pOptionElement.className = 'search-mini__result__choices'
