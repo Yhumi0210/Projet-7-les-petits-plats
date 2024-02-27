@@ -27,14 +27,6 @@ function searchInput() {
         const filteredRecipes = searchRecipes(searchText)
         updateRecipeDisplay(filteredRecipes)
     })
-    // Écouteur d'événements pour détecter quand la barre de recherche est vidée
-    searchInput.addEventListener('keyup', (event) => {
-
-        if (event.key === "Backspace" && searchInput.value === "") {
-            const filteredRecipes = searchRecipes('')
-            updateRecipeDisplay(filteredRecipes)
-        }
-    })
 }
 
 // Fonction pour mettre à jour l'affichage des recettes
