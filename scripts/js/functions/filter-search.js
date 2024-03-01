@@ -1,7 +1,8 @@
-import {recipes} from '../dataBase/recipes.js'
+import { recipes } from '../dataBase/recipes.js'
+import {addTagTemplate} from "./addTag.js";
 
 export function filterTemplate() {
-    function getFilterDOM(ingredients) {
+    function getFilterDOM(filters, nameFilter) {
 
         const divFilterChoice = document.createElement('div')
         const divSearchMini = document.createElement('div')
@@ -11,34 +12,14 @@ export function filterTemplate() {
         const iconGlass = document.createElement('i')
         const divSearchResult = document.createElement('div')
 
-        divFilterChoice.className = 'ingredient'
+        divFilterChoice.className = nameFilter
         divSearchMini.className = 'search-mini'
-        labelSearchMini.setAttribute('for', 'ingredient-search')
+        labelSearchMini.setAttribute('for', `${nameFilter}-search`)
         inputSearchMini.className = 'search-mini__bar'
-        inputSearchMini.setAttribute('id', 'ingredient-search')
+        inputSearchMini.setAttribute('id', `${nameFilter}-search`)
         iconCross.className = 'search-mini__cross fa-solid fa-x'
         iconGlass.className = 'search-mini__glass fa-solid fa-magnifying-glass'
         divSearchResult.className = 'search-mini__result'
-        
-        inputSearchMini.addEventListener('input', () => {
-            const searchText = inputSearchMini.value.trim().toLowerCase()
-            if (searchText.length >= 3) {
-                const filteredIngredients = ingredients.filter(ingredient => ingredient.toLowerCase().includes(searchText))
-                updateSearchResults(filteredIngredients)
-            } else {
-                updateSearchResults(ingredients)
-            }
-        })
-//cette fonction sert à update la liste d'ingrédients
-        function updateSearchResults(filteredIngredients) {
-            divSearchResult.innerHTML = ''
-            filteredIngredients.forEach(ingredient => {
-                const pOptionElement = document.createElement('p')
-                pOptionElement.className = 'search-mini__result__choices'
-                pOptionElement.textContent = ingredient
-                divSearchResult.appendChild(pOptionElement)
-            })
-        }
 
         divFilterChoice.appendChild(divSearchMini)
         divSearchMini.appendChild(labelSearchMini)
@@ -47,14 +28,45 @@ export function filterTemplate() {
         divSearchMini.appendChild(iconGlass)
         divFilterChoice.appendChild(divSearchResult)
 
-        // cette fonction sert à afficher constamment les ingrédients
-        ingredients.forEach(ingredient => {
-            const pOptionElement = document.createElement('p')
-            pOptionElement.className = 'search-mini__result__choices'
-            pOptionElement.textContent = ingredient
-            divSearchResult.appendChild(pOptionElement)
+        inputSearchMini.addEventListener('input', () => {
+            const searchText = inputSearchMini.value.trim().toLowerCase()
+            if (searchText.length >= 3) {
+                const filteredList = filters.filter(item => item.toLowerCase().includes(searchText))
+                updateSearchResults(filteredList)
+            } else {
+                updateSearchResults(filters)
+            }
         })
 
+//cette fonction sert à update la liste
+        function updateSearchResults(list) {
+            divSearchResult.innerHTML = ''
+            list.forEach(item => {
+                const pOptionElement = document.createElement('p')
+                pOptionElement.className = 'search-mini__result__choices'
+                pOptionElement.textContent = item
+                divSearchResult.appendChild(pOptionElement)
+            })
+        }
+
+
+        iconCross.addEventListener('click', () => {
+            inputSearchMini.value = ''
+            updateSearchResults(filters)
+        })
+
+// cette fonction sert à afficher constamment la liste
+        filters.forEach(item => {
+            const pOptionElement = document.createElement('p')
+            pOptionElement.className = 'search-mini__result__choices'
+            pOptionElement.textContent = item
+            divSearchResult.appendChild(pOptionElement)
+            pOptionElement.addEventListener('click', () => {
+                pOptionElement.className = 'yellow-choice'
+                addTagTemplate()
+            })
+        })
+        
         return divFilterChoice
     }
 

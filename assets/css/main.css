@@ -122,7 +122,7 @@ h1 {
   font-size: 0.875rem;
   font-weight: 400;
 }
-.choices .device {
+.choices .appliance {
   position: absolute;
   top: 54rem;
   left: 21rem;
@@ -136,7 +136,7 @@ h1 {
   font-size: 0.875rem;
   font-weight: 400;
 }
-.choices .stuff {
+.choices .ustensil {
   position: absolute;
   top: 54rem;
   left: 36rem;
@@ -200,6 +200,7 @@ h1 {
   font-size: 0.875rem;
   color: #1B1B1B;
   margin: 0.5rem 1rem 0.5rem 1rem;
+  cursor: pointer;
 }
 
 .yellow-choice {
