@@ -2,9 +2,11 @@ import { recipes } from './dataBase/recipes.js'
 import { recipeTemplate } from './templates/recipeFactory.js'
 import { filterTemplate } from './functions/filter-search.js'
 import { updateRecipeDisplay } from './functions/search.js'
+import { addTagTemplate } from './functions/addTag.js'
 
 getRecipes()
 
+// sert à récupérer 
 function getRecipes() {
 
     const cardRecipe = document.querySelector('.hero')
@@ -99,6 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 ingredientOpened = false
             } else {
                 getFiltersIngredients(recipes)
+                updateRecipeDisplay(recipes)
                 ingredientOpened = true
             }
         }
@@ -113,6 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 applianceOpened = false
             } else {
                 getFiltersAppliances(recipes)
+                updateRecipeDisplay(recipes)
                 applianceOpened = true
             }
         }
@@ -127,6 +131,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 ustensilOpened = false
             } else {
                 getFiltersUstensils(recipes)
+                updateRecipeDisplay(recipes)
                 ustensilOpened = true
             }
         }
@@ -137,6 +142,19 @@ document.addEventListener('DOMContentLoaded', function() {
         cardFilter.innerHTML = ''
     }
 })
+
+export function getTag(tag) {
+    const cardTag = document.querySelector('.tag')
+    const existingTags = cardTag.querySelectorAll('.tag__box')
+
+    const tagExists = Array.from(existingTags).some(existingTag => existingTag.textContent === tag)
+
+    if (!tagExists) {
+        const tagModel = addTagTemplate()
+        const tagDOM = tagModel.addTagDOM(tag)
+        cardTag.appendChild(tagDOM)
+    }
+}
 
 // les tags devront aussi apparaitre dans l'index pour qu'ils soient aussi interconnecté avec tous les autres filtres
 

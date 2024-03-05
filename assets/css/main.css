@@ -204,12 +204,40 @@ h1 {
 }
 
 .yellow-choice {
-  position: absolute;
-  top: 3rem;
   background-color: #FFD15B;
-  width: 83.5%;
+  font-weight: 700;
+  width: 82%;
   margin: 0;
   padding: 0.5rem 1rem 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tag {
+  background-color: rgba(198, 198, 198, 0.4);
+  padding: 0 6rem 3rem 6rem;
+  font-family: "Manrope", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+}
+.tag__box {
+  background-color: #FFD15B;
+  margin: 1rem 1rem 1rem 0;
+  padding: 0 1rem 0 1rem;
+  width: 10rem;
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+}
+.tag__box__cross {
+  align-self: center;
+  font-size: 0.8rem;
+  color: #000000;
 }
 
 .hero {

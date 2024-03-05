@@ -1,5 +1,7 @@
 import { recipes } from '../dataBase/recipes.js'
-import {addTagTemplate} from "./addTag.js";
+import {addTagTemplate} from './addTag.js'
+import {updateRecipeDisplay} from './search.js'
+import { getTag } from '../index.js'
 
 export function filterTemplate() {
     function getFilterDOM(filters, nameFilter) {
@@ -33,6 +35,7 @@ export function filterTemplate() {
             if (searchText.length >= 3) {
                 const filteredList = filters.filter(item => item.toLowerCase().includes(searchText))
                 updateSearchResults(filteredList)
+                
             } else {
                 updateSearchResults(filters)
             }
@@ -56,14 +59,21 @@ export function filterTemplate() {
         })
 
 // cette fonction sert à afficher constamment la liste
+        
         filters.forEach(item => {
             const pOptionElement = document.createElement('p')
+            const elementCross = document.createElement('i')
             pOptionElement.className = 'search-mini__result__choices'
             pOptionElement.textContent = item
             divSearchResult.appendChild(pOptionElement)
+            pOptionElement.appendChild(elementCross)
             pOptionElement.addEventListener('click', () => {
-                pOptionElement.className = 'yellow-choice'
-                addTagTemplate()
+                pOptionElement.classList.toggle('yellow-choice')
+                elementCross.classList.toggle('fa-solid')
+                elementCross.classList.toggle('fa-circle-xmark')
+                const clickedChoice = event.target.textContent
+                console.log(clickedChoice)
+                getTag(clickedChoice)
             })
         })
         
