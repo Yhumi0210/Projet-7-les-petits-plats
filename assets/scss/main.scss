@@ -131,6 +131,10 @@ h1 {
         align-self: center;
         font-size: 1rem;
         margin-right: 0.2rem;
+        transition: transform 0.25s ease;
+      }
+      .sort__filter__categories__arrow__up {
+        transform: rotate(180deg); /* Rotation de 180 degrés */
       }
     }
   }
