@@ -3,7 +3,7 @@ import { recipeTemplate } from '../templates/recipeFactory.js'
 import { getFiltersAppliances, getFiltersIngredients, getFiltersUstensils } from '../index.js'
 
 // Fonction pour filtrer les recettes en fonction de la recherche
-function searchRecipes(searchText) {
+export function searchRecipes(searchText) {
     
     if (searchText.length >= 3) {
         const searchFilteredRecipes = recipes.filter(recipe => {
@@ -40,9 +40,11 @@ export function updateRecipeDisplay(filteredRecipes) {
     cardRecipe.innerHTML = ''
 
     for (const recipe of filteredRecipes) {
-        const recipeModel = recipeTemplate()
-        const recipeDOM = recipeModel.getRecipeDOM(recipe)
-        cardRecipe.appendChild(recipeDOM)
+        
+            const recipeModel = recipeTemplate()
+            const recipeDOM = recipeModel.getRecipeDOM(recipe)
+            cardRecipe.appendChild(recipeDOM)
+        
     }
 }
 

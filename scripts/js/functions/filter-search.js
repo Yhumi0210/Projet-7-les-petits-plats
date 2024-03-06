@@ -1,6 +1,6 @@
 import { recipes } from '../dataBase/recipes.js'
 import {addTagTemplate} from './addTag.js'
-import {updateRecipeDisplay} from './search.js'
+import {searchRecipes, updateRecipeDisplay} from './search.js'
 import { getTag } from '../index.js'
 
 export function filterTemplate() {
@@ -35,7 +35,6 @@ export function filterTemplate() {
             if (searchText.length >= 3) {
                 const filteredList = filters.filter(item => item.toLowerCase().includes(searchText))
                 updateSearchResults(filteredList)
-                
             } else {
                 updateSearchResults(filters)
             }
@@ -51,7 +50,6 @@ export function filterTemplate() {
                 divSearchResult.appendChild(pOptionElement)
             })
         }
-
 
         iconCross.addEventListener('click', () => {
             inputSearchMini.value = ''

@@ -1,8 +1,9 @@
 import { recipes } from './dataBase/recipes.js'
 import { recipeTemplate } from './templates/recipeFactory.js'
 import { filterTemplate } from './functions/filter-search.js'
-import { updateRecipeDisplay } from './functions/search.js'
+import {searchRecipes, updateRecipeDisplay} from './functions/search.js'
 import { addTagTemplate } from './functions/addTag.js'
+
 
 getRecipes()
 
@@ -101,7 +102,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 ingredientOpened = false
             } else {
                 getFiltersIngredients(recipes)
-                updateRecipeDisplay(recipes)
                 ingredientOpened = true
             }
         }
@@ -116,7 +116,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 applianceOpened = false
             } else {
                 getFiltersAppliances(recipes)
-                updateRecipeDisplay(recipes)
                 applianceOpened = true
             }
         }
@@ -131,7 +130,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 ustensilOpened = false
             } else {
                 getFiltersUstensils(recipes)
-                updateRecipeDisplay(recipes)
                 ustensilOpened = true
             }
         }
@@ -161,9 +159,17 @@ export function getTag(tag) {
     const tagExists = Array.from(existingTags).some(existingTag => existingTag.textContent === tag)
 
     if (!tagExists) {
+        // Si le tag n'existe pas, ajoutez-le
         const tagModel = addTagTemplate()
         const tagDOM = tagModel.addTagDOM(tag)
         cardTag.appendChild(tagDOM)
+    } else {
+        // Si le tag existe, supprimez-le
+        existingTags.forEach(existingTag => {
+            if (existingTag.textContent === tag) {
+                existingTag.remove()
+            }
+        })
     }
 }
 
