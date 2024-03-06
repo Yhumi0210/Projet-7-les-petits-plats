@@ -102,7 +102,6 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 getFiltersIngredients(recipes)
                 updateRecipeDisplay(recipes)
-                arrowAnimation()
                 ingredientOpened = true
             }
         }
@@ -118,7 +117,6 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 getFiltersAppliances(recipes)
                 updateRecipeDisplay(recipes)
-                arrowAnimation()
                 applianceOpened = true
             }
         }
@@ -134,17 +132,20 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 getFiltersUstensils(recipes)
                 updateRecipeDisplay(recipes)
-                arrowAnimation()
                 ustensilOpened = true
             }
         }
     })
 
-    function arrowAnimation(idSection) {
-        document.querySelector(`#${idSection} .sort__filter__categories`).addEventListener('click', () => {
-            document.querySelector('.sort__filter__categories__arrow').classList.add('sort__filter__categories__arrow__up')
-        })
-    }
+    document.getElementById('filter-ingredient').addEventListener('click', () => {
+        document.getElementById('ingredients-arrow').classList.toggle('sort__filter__categories__arrow__up')
+    })
+    document.getElementById('filter-appliance').addEventListener('click', () => {
+        document.getElementById('appliance-arrow').classList.toggle('sort__filter__categories__arrow__up')
+    })
+    document.getElementById('filter-ustensil').addEventListener('click', () => {
+        document.getElementById('ustensil-arrow').classList.toggle('sort__filter__categories__arrow__up')
+    })
     
     function closeFilters(idSection) {
         // Logique pour fermer les filtres
