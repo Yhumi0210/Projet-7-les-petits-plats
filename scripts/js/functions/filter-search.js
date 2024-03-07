@@ -1,5 +1,4 @@
 import { recipes } from '../dataBase/recipes.js'
-import {addTagTemplate} from './addTag.js'
 import {searchRecipes, updateRecipeDisplay} from './search.js'
 import { getTag } from '../index.js'
 
@@ -66,12 +65,33 @@ export function filterTemplate() {
             divSearchResult.appendChild(pOptionElement)
             pOptionElement.appendChild(elementCross)
             pOptionElement.addEventListener('click', () => {
-                pOptionElement.classList.toggle('yellow-choice')
+                const clickedChoice = event.target.textContent
+                const isSelected = pOptionElement.classList.contains('yellow-choice')
+
+                if (!isSelected) {
+                    pOptionElement.classList.add('yellow-choice')
+                    elementCross.classList.add('fa-solid')
+                    elementCross.classList.add('fa-circle-xmark')
+                    getTag(clickedChoice)
+                    console.log(pOptionElement.textContent)
+                } else {
+                    pOptionElement.classList.remove('yellow-choice')
+                    elementCross.classList.remove('fa-solid')
+                    elementCross.classList.remove('fa-circle-xmark')
+                    getTag(clickedChoice, true)
+                    console.log(pOptionElement.textContent)
+                }
+            })
+
+            elementCross.addEventListener('click', (event) => {
+                event.stopPropagation() // Empêche la propagation de l'événement de clic à l'élément parent
+                const clickedChoice = event.target.parentNode.textContent // Obtient le texte du tag
+                getTag(clickedChoice, true) // Appelle getTag avec le deuxième argument défini sur true
+
+                // Supprime la classe "yellow-choice" de l'élément parent (pOptionElement)
+                event.target.parentNode.classList.remove('yellow-choice')
                 elementCross.classList.toggle('fa-solid')
                 elementCross.classList.toggle('fa-circle-xmark')
-                const clickedChoice = event.target.textContent
-                console.log(clickedChoice)
-                getTag(clickedChoice)
             })
         })
         

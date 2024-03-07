@@ -96,6 +96,7 @@ h1 {
   font-size: 1rem;
   font-weight: 500;
   color: black;
+  cursor: pointer;
 }
 .sort__filter__categories__arrow {
   align-self: center;
@@ -119,7 +120,7 @@ h1 {
   left: 6rem;
   z-index: 2;
   width: 12rem;
-  height: 15rem;
+  max-height: 15rem;
   border-radius: 0 0 11px 11px;
   background-color: #FFFFFF;
   color: #1B1B1B;
@@ -133,7 +134,7 @@ h1 {
   left: 21rem;
   z-index: 2;
   width: 12rem;
-  height: 15rem;
+  max-height: 15rem;
   border-radius: 0 0 11px 11px;
   background-color: #FFFFFF;
   color: #1B1B1B;
@@ -147,7 +148,7 @@ h1 {
   left: 36rem;
   z-index: 2;
   width: 12rem;
-  height: 15rem;
+  max-height: 15rem;
   border-radius: 0 0 11px 11px;
   background-color: #FFFFFF;
   color: #1B1B1B;
@@ -195,7 +196,7 @@ h1 {
 }
 .search-mini__result {
   width: 100%;
-  height: 12rem;
+  max-height: 12rem;
   text-overflow: ellipsis;
   overflow: auto;
 }

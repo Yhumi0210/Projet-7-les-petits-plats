@@ -2,8 +2,8 @@ import { recipes } from './dataBase/recipes.js'
 import { recipeTemplate } from './templates/recipeFactory.js'
 import { filterTemplate } from './functions/filter-search.js'
 import {searchRecipes, updateRecipeDisplay} from './functions/search.js'
-import { addTagTemplate } from './functions/addTag.js'
-
+import { addTagTemplate } from './templates/tagFactory.js'
+// import { removeFilter } from './functions/tags.js'
 
 getRecipes()
 
@@ -94,13 +94,16 @@ document.addEventListener('DOMContentLoaded', function() {
     let ustensilOpened =  false
 
     ingredientSection.addEventListener('click', function(event) {
+        const arrowElement = document.getElementById('ingredients-arrow')
         // Vérifie si l'élément cliqué est l'icône "Ingrédients" ou son conteneur
         if (event.target === ingredientSection
             || event.target.classList.contains('sort__filter__categories__arrow')) {
             if (ingredientOpened) {
+                arrowElement.classList.remove('sort__filter__categories__arrow__up')
                 closeFilters('filter-ingredient')
                 ingredientOpened = false
             } else {
+                arrowElement.classList.add('sort__filter__categories__arrow__up')
                 getFiltersIngredients(recipes)
                 ingredientOpened = true
             }
@@ -108,13 +111,16 @@ document.addEventListener('DOMContentLoaded', function() {
     })
 
     applianceSection.addEventListener('click', function(event) {
+        const arrowElement = document.getElementById('appliance-arrow')
         // Vérifie si l'élément cliqué est l'icône "Ingrédients" ou son conteneur
         if (event.target === applianceSection
             || event.target.classList.contains('sort__filter__categories__arrow')) {
             if (applianceOpened) {
+                arrowElement.classList.remove('sort__filter__categories__arrow__up')
                 closeFilters('filter-appliance')
                 applianceOpened = false
             } else {
+                arrowElement.classList.add('sort__filter__categories__arrow__up')
                 getFiltersAppliances(recipes)
                 applianceOpened = true
             }
@@ -122,27 +128,20 @@ document.addEventListener('DOMContentLoaded', function() {
     })
 
     ustensilSection.addEventListener('click', function(event) {
+        const arrowElement = document.getElementById('ustensil-arrow')
         // Vérifie si l'élément cliqué est l'icône "Ingrédients" ou son conteneur
         if (event.target === ustensilSection
             || event.target.classList.contains('sort__filter__categories__arrow')) {
             if (ustensilOpened) {
+                arrowElement.classList.remove('sort__filter__categories__arrow__up')
                 closeFilters('filter-ustensil')
                 ustensilOpened = false
             } else {
+                arrowElement.classList.add('sort__filter__categories__arrow__up')
                 getFiltersUstensils(recipes)
                 ustensilOpened = true
             }
         }
-    })
-
-    document.getElementById('filter-ingredient').addEventListener('click', () => {
-        document.getElementById('ingredients-arrow').classList.toggle('sort__filter__categories__arrow__up')
-    })
-    document.getElementById('filter-appliance').addEventListener('click', () => {
-        document.getElementById('appliance-arrow').classList.toggle('sort__filter__categories__arrow__up')
-    })
-    document.getElementById('filter-ustensil').addEventListener('click', () => {
-        document.getElementById('ustensil-arrow').classList.toggle('sort__filter__categories__arrow__up')
     })
     
     function closeFilters(idSection) {
@@ -152,26 +151,39 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 })
 
-export function getTag(tag) {
+export function getTag(tag, isCrossIcon= false) {
     const cardTag = document.querySelector('.tag')
     const existingTags = cardTag.querySelectorAll('.tag__box')
 
     const tagExists = Array.from(existingTags).some(existingTag => existingTag.textContent === tag)
 
-    if (!tagExists) {
-        // Si le tag n'existe pas, ajoutez-le
-        const tagModel = addTagTemplate()
-        const tagDOM = tagModel.addTagDOM(tag)
-        cardTag.appendChild(tagDOM)
-    } else {
-        // Si le tag existe, supprimez-le
+    // Vérifie si le clic provient de l'icône de la croix
+    if (isCrossIcon) {
+        // Supprime le tag correspondant
         existingTags.forEach(existingTag => {
             if (existingTag.textContent === tag) {
                 existingTag.remove()
+                // Supprime également le filtre correspondant
+                // removeFilter(tag)
             }
         })
+    } else {
+        if (!tagExists) {
+            // Si le tag n'existe pas, il s'ajoute
+            const tagModel = addTagTemplate()
+            const tagDOM = tagModel.addTagDOM(tag)
+            cardTag.appendChild(tagDOM)
+
+            // supprime le tag lorsque cliqué
+            tagDOM.addEventListener('click', () => {
+                getTag(tag, true) // supprime le tag
+                // removeFilter(tag)
+
+            })
+        }
     }
 }
+
 
 // les tags devront aussi apparaitre dans l'index pour qu'ils soient aussi interconnecté avec tous les autres filtres
 
