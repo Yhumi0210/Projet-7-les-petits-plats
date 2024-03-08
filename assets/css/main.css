@@ -114,6 +114,13 @@ h1 {
   font-weight: 400;
 }
 
+#ingredients-choice, #appliance-choice, #ustensil-choice {
+  display: none;
+}
+#ingredients-choice.open, #appliance-choice.open, #ustensil-choice.open {
+  display: block;
+}
+
 .choices .ingredient {
   position: absolute;
   top: 54rem;

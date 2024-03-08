@@ -1,6 +1,7 @@
 import { recipes } from '../dataBase/recipes.js'
 import {searchRecipes, updateRecipeDisplay} from './search.js'
 import { getTag } from '../index.js'
+import { filtersSelected, selectFilter } from './filters.js'
 
 export function filterTemplate() {
     function getFilterDOM(filters, nameFilter) {
@@ -64,34 +65,26 @@ export function filterTemplate() {
             pOptionElement.textContent = item
             divSearchResult.appendChild(pOptionElement)
             pOptionElement.appendChild(elementCross)
-            pOptionElement.addEventListener('click', () => {
-                const clickedChoice = event.target.textContent
+            const isApplied = filtersSelected.find( filter => filter.type === nameFilter && filter.value === item)
+            if (isApplied) {
+                pOptionElement.classList.add('yellow-choice')
+            }
+            pOptionElement.addEventListener('click', (event) => {
                 const isSelected = pOptionElement.classList.contains('yellow-choice')
-
+                selectFilter(nameFilter, item)
                 if (!isSelected) {
                     pOptionElement.classList.add('yellow-choice')
                     elementCross.classList.add('fa-solid')
                     elementCross.classList.add('fa-circle-xmark')
-                    getTag(clickedChoice)
+                    getTag(nameFilter, item)
                     console.log(pOptionElement.textContent)
                 } else {
                     pOptionElement.classList.remove('yellow-choice')
                     elementCross.classList.remove('fa-solid')
                     elementCross.classList.remove('fa-circle-xmark')
-                    getTag(clickedChoice, true)
                     console.log(pOptionElement.textContent)
+                    // ici je pourrais gérer la suppresion du tag quand on clique
                 }
-            })
-
-            elementCross.addEventListener('click', (event) => {
-                event.stopPropagation() // Empêche la propagation de l'événement de clic à l'élément parent
-                const clickedChoice = event.target.parentNode.textContent // Obtient le texte du tag
-                getTag(clickedChoice, true) // Appelle getTag avec le deuxième argument défini sur true
-
-                // Supprime la classe "yellow-choice" de l'élément parent (pOptionElement)
-                event.target.parentNode.classList.remove('yellow-choice')
-                elementCross.classList.toggle('fa-solid')
-                elementCross.classList.toggle('fa-circle-xmark')
             })
         })
         

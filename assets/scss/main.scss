@@ -147,6 +147,13 @@ h1 {
   }
 }
 
+#ingredients-choice, #appliance-choice, #ustensil-choice {
+  display: none;
+  &.open {
+    display: block;
+  }
+}
+
 .choices {
   .ingredient {
     position: absolute;
