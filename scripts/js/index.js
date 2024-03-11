@@ -175,6 +175,32 @@ export function getTag(type, tag) {
     cardTag.appendChild(tagDOM)
 }
 
+export function removeTag(tag) {
+    const tags = document.querySelectorAll('.tag__box')
+    tags.forEach(tagElement => {
+        if (tagElement.textContent === tag) {
+            tagElement.remove()
+        }
+    })
+
+    const cardFilters = document.querySelectorAll('.sort__filter__categories__arrow__up')
+    cardFilters.forEach(filter => {
+        if (filter.nextElementSibling) {
+            const filterList = filter.nextElementSibling.querySelector('.search-mini__result')
+            if (filterList) {
+                const filterItems = filterList.querySelectorAll('.search-mini__result__choices')
+                filterItems.forEach(item => {
+                    if (item.textContent === tag) {
+                        item.classList.remove('yellow-choice')
+                    }
+                })
+            }
+        }
+    })
+}
+
+
+
 
 // les tags devront aussi apparaitre dans l'index pour qu'ils soient aussi interconnecté avec tous les autres filtres
 

@@ -1,6 +1,6 @@
 import { recipes } from '../dataBase/recipes.js'
 import {searchRecipes, updateRecipeDisplay} from './search.js'
-import { getTag } from '../index.js'
+import { getTag, removeTag } from '../index.js'
 import { filtersSelected, selectFilter } from './filters.js'
 
 export function filterTemplate() {
@@ -82,8 +82,9 @@ export function filterTemplate() {
                     pOptionElement.classList.remove('yellow-choice')
                     elementCross.classList.remove('fa-solid')
                     elementCross.classList.remove('fa-circle-xmark')
-                    console.log(pOptionElement.textContent)
+                    
                     // ici je pourrais gérer la suppresion du tag quand on clique
+                    removeTag(item)
                 }
             })
         })
