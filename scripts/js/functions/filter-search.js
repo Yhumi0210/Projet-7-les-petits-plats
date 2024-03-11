@@ -1,7 +1,7 @@
 import { recipes } from '../dataBase/recipes.js'
 import {searchRecipes, updateRecipeDisplay} from './search.js'
-import { getTag, removeTag } from '../index.js'
-import { filtersSelected, selectFilter } from './filters.js'
+import {getFiltersAppliances, getFiltersIngredients, getFiltersUstensils, getTag, removeTag} from '../index.js'
+import { selectFilter, updateAllFilters, filtersSelected } from './filters.js'
 
 export function filterTemplate() {
     function getFilterDOM(filters, nameFilter) {
@@ -35,10 +35,11 @@ export function filterTemplate() {
             if (searchText.length >= 3) {
                 const filteredList = filters.filter(item => item.toLowerCase().includes(searchText))
                 updateSearchResults(filteredList)
-            } else {
+             }  else {
                 updateSearchResults(filters)
-            }
+             }
         })
+
 
 //cette fonction sert à update la liste
         function updateSearchResults(list) {
@@ -65,10 +66,12 @@ export function filterTemplate() {
             pOptionElement.textContent = item
             divSearchResult.appendChild(pOptionElement)
             pOptionElement.appendChild(elementCross)
-            const isApplied = filtersSelected.find( filter => filter.type === nameFilter && filter.value === item)
-            if (isApplied) {
-                pOptionElement.classList.add('yellow-choice')
-            }
+            
+            // const isApplied = filtersSelected.find( filter => filter.type === nameFilter && filter.value === item)
+            // if (isApplied) {
+            //     pOptionElement.classList.add('yellow-choice')
+            //     console.log("à quoi ça sert" + isApplied)
+            // }
             pOptionElement.addEventListener('click', (event) => {
                 const isSelected = pOptionElement.classList.contains('yellow-choice')
                 selectFilter(nameFilter, item)
@@ -83,7 +86,7 @@ export function filterTemplate() {
                     elementCross.classList.remove('fa-solid')
                     elementCross.classList.remove('fa-circle-xmark')
                     
-                    // ici je pourrais gérer la suppresion du tag quand on clique
+                    // ici je gére la suppression du tag quand on clique
                     removeTag(item)
                 }
             })

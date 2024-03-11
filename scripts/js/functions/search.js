@@ -1,6 +1,7 @@
 import { recipes } from '../dataBase/recipes.js'
 import { recipeTemplate } from '../templates/recipeFactory.js'
 import { getFiltersAppliances, getFiltersIngredients, getFiltersUstensils } from '../index.js'
+import { updateAllFilters, filtersSelected } from './filters.js'
 
 // Fonction pour filtrer les recettes en fonction de la recherche
 export function searchRecipes(searchText) {
@@ -27,9 +28,10 @@ function searchInput() {
         const searchText = searchInput.value
         const filteredRecipes = searchRecipes(searchText)
         updateRecipeDisplay(filteredRecipes)
-        getFiltersIngredients(filteredRecipes)
-        getFiltersAppliances(filteredRecipes)
-        getFiltersUstensils(filteredRecipes)
+        // getFiltersIngredients(filteredRecipes)
+        // getFiltersAppliances(filteredRecipes)
+        // getFiltersUstensils(filteredRecipes)
+        updateAllFilters(filtersSelected)
     })
 }
 

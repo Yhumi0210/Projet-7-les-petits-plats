@@ -3,7 +3,7 @@ import { recipeTemplate } from './templates/recipeFactory.js'
 import { filterTemplate } from './functions/filter-search.js'
 import {searchRecipes, updateRecipeDisplay} from './functions/search.js'
 import { addTagTemplate } from './templates/tagFactory.js'
-import {selectFilter} from './functions/filters.js'
+import {selectFilter, updateAllFilters, filtersSelected} from './functions/filters.js'
 
 getRecipes()
 
@@ -18,6 +18,7 @@ function getRecipes() {
         const recipeDOM = recipeModel.getRecipeDOM(recipe)
         cardRecipe.appendChild(recipeDOM)
     }
+    updateAllFilters(filtersSelected)
 }
 
 export function getFiltersIngredients(filteredRecipes)
@@ -41,6 +42,7 @@ export function getFiltersIngredients(filteredRecipes)
     const filterModel = filterTemplate()
     const filterDOM = filterModel.getFilterDOM(allIngredients, 'ingredient')
     cardFilter.appendChild(filterDOM)
+    
 }
 
 export function getFiltersAppliances(filteredRecipes) {
@@ -60,6 +62,7 @@ export function getFiltersAppliances(filteredRecipes) {
     const filterModel = filterTemplate()
     const filterDOM = filterModel.getFilterDOM(allAppliances, 'appliance')
     cardFilter.appendChild(filterDOM)
+        
 }
 
 export function getFiltersUstensils(filteredRecipes) {
@@ -83,6 +86,7 @@ export function getFiltersUstensils(filteredRecipes) {
     const filterModel = filterTemplate()
     const filterDOM = filterModel.getFilterDOM(allUstensils, 'ustensil')
     cardFilter.appendChild(filterDOM)
+        
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -149,7 +153,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     })
-    
 })
 
 export function getTag(type, tag) {
@@ -198,8 +201,6 @@ export function removeTag(tag) {
         }
     })
 }
-
-
 
 
 // les tags devront aussi apparaitre dans l'index pour qu'ils soient aussi interconnecté avec tous les autres filtres
