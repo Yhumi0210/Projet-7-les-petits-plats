@@ -6,7 +6,7 @@ export function addTagTemplate() {
 
         divTag.className = 'tag__box'
         iconTag.className = 'tag__box__cross fa-solid fa-x'
-        
+
         divTag.dataset.type = type
 // dataset sert à stocker des infos
         divTag.textContent = tag

@@ -1,11 +1,13 @@
 import { recipes } from './dataBase/recipes.js'
 import { recipeTemplate } from './templates/recipeFactory.js'
 import { filterTemplate } from './functions/filter-search.js'
-import {searchRecipes, updateRecipeDisplay} from './functions/search.js'
+import {searchRecipes, updateRecipeDisplay, filterRecipes} from './functions/search.js'
 import { addTagTemplate } from './templates/tagFactory.js'
-import {selectFilter, updateAllFilters, filtersSelected} from './functions/filters.js'
+import {selectFilter,  filtersSelected, updateAllFilters} from './functions/filters.js'
+import { showCounterRecipes } from './functions/recipesCounter.js'
 
 getRecipes()
+
 
 // sert à récupérer 
 function getRecipes() {
@@ -18,7 +20,7 @@ function getRecipes() {
         const recipeDOM = recipeModel.getRecipeDOM(recipe)
         cardRecipe.appendChild(recipeDOM)
     }
-    updateAllFilters(filtersSelected)
+    showCounterRecipes()
 }
 
 export function getFiltersIngredients(filteredRecipes)
@@ -42,7 +44,6 @@ export function getFiltersIngredients(filteredRecipes)
     const filterModel = filterTemplate()
     const filterDOM = filterModel.getFilterDOM(allIngredients, 'ingredient')
     cardFilter.appendChild(filterDOM)
-    
 }
 
 export function getFiltersAppliances(filteredRecipes) {
@@ -77,7 +78,7 @@ export function getFiltersUstensils(filteredRecipes) {
                 }
             })
         })
-        
+
         return ustensils
         // à boucler dans le tableau des ustensiles
     }
@@ -86,7 +87,7 @@ export function getFiltersUstensils(filteredRecipes) {
     const filterModel = filterTemplate()
     const filterDOM = filterModel.getFilterDOM(allUstensils, 'ustensil')
     cardFilter.appendChild(filterDOM)
-        
+
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -112,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 divIngredient.classList.add('open')
                 getFiltersIngredients(recipes)
                 ingredientOpened = true
-            }
+            }            
         }
     })
 
@@ -160,7 +161,7 @@ export function getTag(type, tag) {
 
     const tagModel = addTagTemplate()
     const tagDOM = tagModel.addTagDOM(type, tag)
-    
+
     tagDOM.addEventListener('click', () => {
         selectFilter(type, tag)
         cardTag.removeChild(tagDOM)
@@ -174,7 +175,7 @@ export function getTag(type, tag) {
             getFiltersUstensils(recipes)
         }
     })
-    
+
     cardTag.appendChild(tagDOM)
 }
 
@@ -201,6 +202,26 @@ export function removeTag(tag) {
         }
     })
 }
+
+// Définition de la fonction de callback
+function updateRecipes() {
+    const searchText = document.getElementById('recipe-search').value
+    const filteredRecipes = filterRecipes(searchText)
+    updateRecipeDisplay(filteredRecipes)
+
+    // Mettre à jour les filtres lorsque la recherche principale est modifiée
+    getFiltersIngredients(filteredRecipes)
+    getFiltersAppliances(filteredRecipes)
+    getFiltersUstensils(filteredRecipes)
+}
+
+// // Appel de la fonction de callback lorsque la recherche principale est modifiée
+// document.getElementById('recipe-search').addEventListener('input', updateRecipes)
+//
+// // Appel de la fonction de callback lorsque les filtres sont modifiés
+// document.getElementById('filter-ingredient').addEventListener('click', updateRecipes)
+// document.getElementById('filter-appliance').addEventListener('click', updateRecipes)
+// document.getElementById('filter-ustensil').addEventListener('click', updateRecipes)
 
 
 // les tags devront aussi apparaitre dans l'index pour qu'ils soient aussi interconnecté avec tous les autres filtres

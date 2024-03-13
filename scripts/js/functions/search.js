@@ -1,7 +1,26 @@
 import { recipes } from '../dataBase/recipes.js'
 import { recipeTemplate } from '../templates/recipeFactory.js'
 import { getFiltersAppliances, getFiltersIngredients, getFiltersUstensils } from '../index.js'
-import { updateAllFilters, filtersSelected } from './filters.js'
+import {filtersSelected, selectFilter, updateAllFilters} from './filters.js'
+import { showCounterRecipes, countDisplayedRecipes } from './recipesCounter.js'
+
+export function filterRecipes(searchText) {
+    let filteredRecipes = recipes
+
+    // Filtrer les recettes en fonction de la recherche principale
+    if (searchText.trim() !== '') {
+        filteredRecipes = filteredRecipes.filter(recipe => {
+            return recipe.name.toLowerCase().includes(searchText.toLowerCase())
+                || recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(searchText.toLowerCase()))
+                || recipe.description.toLowerCase().includes(searchText.toLowerCase())
+        })
+    }
+
+    // Filtrer les recettes en fonction des filtres sélectionnés
+    // Ajoute ici la logique pour filtrer en fonction des filtres sélectionnés
+
+    return filteredRecipes
+}
 
 // Fonction pour filtrer les recettes en fonction de la recherche
 export function searchRecipes(searchText) {
@@ -18,20 +37,37 @@ export function searchRecipes(searchText) {
     }
 }
 
+// affiche constamment le nombre de recettes affichées sur la page, même sans effectuer de recherche 
+document.addEventListener('DOMContentLoaded', function() {
+    // Calcul du nombre total de recettes
+    const totalRecipes = recipes.length
+
+    // Affichage initial du compteur de recettes
+    showCounterRecipes(totalRecipes)
+
+    // Appel de la fonction pour gérer les événements de saisie
+    searchInput()
+})
+
 // Fonction pour gérer les événements de saisie dans la barre de recherche
 function searchInput() {
     
     const searchInput = document.getElementById('recipe-search')
 
     searchInput.addEventListener('input', () => {
-        
+
         const searchText = searchInput.value
         const filteredRecipes = searchRecipes(searchText)
         updateRecipeDisplay(filteredRecipes)
-        // getFiltersIngredients(filteredRecipes)
-        // getFiltersAppliances(filteredRecipes)
-        // getFiltersUstensils(filteredRecipes)
-        updateAllFilters(filtersSelected)
+        getFiltersIngredients(filteredRecipes)
+        getFiltersAppliances(filteredRecipes)
+        getFiltersUstensils(filteredRecipes)
+
+        // Calcule le nombre de recettes affichées
+        const numDisplayedRecipes = countDisplayedRecipes()
+
+        // Met à jour le compteur de recettes
+        showCounterRecipes(numDisplayedRecipes)
     })
 }
 

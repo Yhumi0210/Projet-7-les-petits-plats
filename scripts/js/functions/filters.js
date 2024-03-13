@@ -1,6 +1,7 @@
 import {getFiltersAppliances, getFiltersIngredients, getFiltersUstensils} from '../index.js'
-import {updateRecipeDisplay} from './search.js'
+import {filterRecipes, updateRecipeDisplay} from './search.js'
 import { recipes } from '../dataBase/recipes.js'
+import { showCounterRecipes, countDisplayedRecipes } from './recipesCounter.js'
 
 export let filtersSelected = []
 //Définissez une fonction pour mettre à jour tous les filtres en fonction des sélections actuelles
@@ -9,6 +10,13 @@ export function updateAllFilters(selectedFilters) {
     getFiltersIngredients(filteredRecipes)
     getFiltersAppliances(filteredRecipes)
     getFiltersUstensils(filteredRecipes)
+    updateRecipeDisplay(filteredRecipes)
+
+    // Calcule le nombre de recettes affichées
+    const numDisplayedRecipes = countDisplayedRecipes()
+
+    // Met à jour le compteur de recettes
+    showCounterRecipes(numDisplayedRecipes)
 }
 
 // Modifiez la fonction selectFilter pour synchroniser les sélections entre les filtres
@@ -59,4 +67,4 @@ function filterRecipesBySelectedFilters(allRecipes, selectedFilters) {
 // j'ouvre mon filtre, je choisis un ingrédient en cliquant sur un filtre
 // et mes recettes se filtrent en fonction.
 
-// comme mes recettes se mettent à jour, les filtres se mettent à jour aussi
+// comme mes recettes se mettent à jour, les filtres se mettent à jour aussimes recettes se mettent à jour, les filtres se mettent à jour aussi

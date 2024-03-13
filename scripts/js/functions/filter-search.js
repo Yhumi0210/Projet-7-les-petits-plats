@@ -1,7 +1,7 @@
 import { recipes } from '../dataBase/recipes.js'
 import {searchRecipes, updateRecipeDisplay} from './search.js'
-import {getFiltersAppliances, getFiltersIngredients, getFiltersUstensils, getTag, removeTag} from '../index.js'
-import { selectFilter, updateAllFilters, filtersSelected } from './filters.js'
+import {getFiltersAppliances, getFiltersIngredients, getFiltersUstensils, getTag, removeTag } from '../index.js'
+import { selectFilter, filtersSelected } from './filters.js'
 
 export function filterTemplate() {
     function getFilterDOM(filters, nameFilter) {
@@ -30,15 +30,36 @@ export function filterTemplate() {
         divSearchMini.appendChild(iconGlass)
         divFilterChoice.appendChild(divSearchResult)
 
+        // inputSearchMini.addEventListener('input', () => {
+        //     console.log("j'essaie de saisir du texte")
+        //     const searchText = inputSearchMini.value.trim().toLowerCase()
+        //     if (searchText.length >= 3) {
+        //         const filteredRecipes = searchRecipes(searchText)
+        //         updateRecipeDisplay(filteredRecipes)
+        //
+        //         // Mettre à jour les filtres en fonction des recettes filtrées
+        //         // getFiltersIngredients(filteredRecipes)
+        //         // getFiltersAppliances(filteredRecipes)
+        //         // getFiltersUstensils(filteredRecipes)
+        //     } else {
+        //             // Si le texte de recherche est vide, afficher toutes les recettes et mettre à jour les filtres
+        //             updateRecipeDisplay(recipes)
+        //             // getFiltersIngredients(recipes)
+        //             // getFiltersAppliances(recipes)
+        //             // getFiltersUstensils(recipes)
+        //     }
+        // })
+
         inputSearchMini.addEventListener('input', () => {
             const searchText = inputSearchMini.value.trim().toLowerCase()
             if (searchText.length >= 3) {
                 const filteredList = filters.filter(item => item.toLowerCase().includes(searchText))
                 updateSearchResults(filteredList)
-             }  else {
+            }  else {
                 updateSearchResults(filters)
-             }
+            }
         })
+        
 
 
 //cette fonction sert à update la liste
@@ -46,9 +67,38 @@ export function filterTemplate() {
             divSearchResult.innerHTML = ''
             list.forEach(item => {
                 const pOptionElement = document.createElement('p')
+                const elementCross = document.createElement('i')
                 pOptionElement.className = 'search-mini__result__choices'
                 pOptionElement.textContent = item
                 divSearchResult.appendChild(pOptionElement)
+                pOptionElement.appendChild(elementCross)
+                const isApplied = filtersSelected.find( filter => filter.type === nameFilter && filter.value === item)
+                if (isApplied) {
+                    pOptionElement.classList.add('yellow-choice')
+                    elementCross.classList.add('fa-solid')
+                    elementCross.classList.add('fa-circle-xmark')
+                    console.log("à quoi ça sert" + isApplied)
+                }
+                pOptionElement.addEventListener('click', (event) => {
+                    const isSelected = pOptionElement.classList.contains('yellow-choice')
+                    //selectFilter(nameFilter, item)
+                    // si je laisse selectFilter, ma liste de filtre se reset malgré l'input
+                    // mais si je l'enlève, les éléments ne sont pas pris dans le tableau
+                    if (!isSelected) {
+                        pOptionElement.classList.add('yellow-choice')
+                        elementCross.classList.add('fa-solid')
+                        elementCross.classList.add('fa-circle-xmark')
+                        getTag(nameFilter, item)
+                        console.log(pOptionElement.textContent)
+                    } else {
+                        pOptionElement.classList.remove('yellow-choice')
+                        elementCross.classList.remove('fa-solid')
+                        elementCross.classList.remove('fa-circle-xmark')
+
+                        // ici je gére la suppression du tag quand on clique
+                        removeTag(item)
+                    }
+                })
             })
         }
 
@@ -67,11 +117,13 @@ export function filterTemplate() {
             divSearchResult.appendChild(pOptionElement)
             pOptionElement.appendChild(elementCross)
             
-            // const isApplied = filtersSelected.find( filter => filter.type === nameFilter && filter.value === item)
-            // if (isApplied) {
-            //     pOptionElement.classList.add('yellow-choice')
-            //     console.log("à quoi ça sert" + isApplied)
-            // }
+            const isApplied = filtersSelected.find( filter => filter.type === nameFilter && filter.value === item)
+            if (isApplied) {
+                pOptionElement.classList.add('yellow-choice')
+                elementCross.classList.add('fa-solid')
+                elementCross.classList.add('fa-circle-xmark')
+                console.log("à quoi ça sert" + isApplied)
+            }
             pOptionElement.addEventListener('click', (event) => {
                 const isSelected = pOptionElement.classList.contains('yellow-choice')
                 selectFilter(nameFilter, item)
