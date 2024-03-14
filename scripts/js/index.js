@@ -1,9 +1,9 @@
 import { recipes } from './dataBase/recipes.js'
 import { recipeTemplate } from './templates/recipeFactory.js'
 import { filterTemplate } from './functions/filter-search.js'
-import {searchRecipes, updateRecipeDisplay, filterRecipes} from './functions/search.js'
+import {searchRecipes, updateRecipeDisplay} from './functions/search.js'
 import { addTagTemplate } from './templates/tagFactory.js'
-import {selectFilter,  filtersSelected, updateAllFilters} from './functions/filters.js'
+import {selectFilter,  filtersSelected, updateAllFilters, filterRecipesBySelectedFilters} from './functions/filters.js'
 import { showCounterRecipes } from './functions/recipesCounter.js'
 
 getRecipes()
@@ -13,14 +13,15 @@ getRecipes()
 function getRecipes() {
 
     const cardRecipe = document.querySelector('.hero')
-    cardRecipe.innerHTML = ''
+    cardRecipe.textContent = ''
 
+    const recipeModel = recipeTemplate()
     for (const recipe of recipes) {
-        const recipeModel = recipeTemplate()
         const recipeDOM = recipeModel.getRecipeDOM(recipe)
         cardRecipe.appendChild(recipeDOM)
     }
     showCounterRecipes()
+    
 }
 
 export function getFiltersIngredients(filteredRecipes)
@@ -39,6 +40,10 @@ export function getFiltersIngredients(filteredRecipes)
         })
         return ingredients
     }
+    // const getIngredients = () => {
+    //     const ingredients = filteredRecipes.flatMap(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient.toLowerCase())).filter((ingredient, index, array) => array.indexOf(ingredient) === index)
+    //     return ingredients
+    // }
     const allIngredients = getIngredients()
 
     const filterModel = filterTemplate()
@@ -206,7 +211,7 @@ export function removeTag(tag) {
 // Définition de la fonction de callback
 function updateRecipes() {
     const searchText = document.getElementById('recipe-search').value
-    const filteredRecipes = filterRecipes(searchText)
+    const filteredRecipes = searchRecipes(searchText)
     updateRecipeDisplay(filteredRecipes)
 
     // Mettre à jour les filtres lorsque la recherche principale est modifiée
@@ -215,18 +220,12 @@ function updateRecipes() {
     getFiltersUstensils(filteredRecipes)
 }
 
-// // Appel de la fonction de callback lorsque la recherche principale est modifiée
-// document.getElementById('recipe-search').addEventListener('input', updateRecipes)
-//
-// // Appel de la fonction de callback lorsque les filtres sont modifiés
-// document.getElementById('filter-ingredient').addEventListener('click', updateRecipes)
-// document.getElementById('filter-appliance').addEventListener('click', updateRecipes)
-// document.getElementById('filter-ustensil').addEventListener('click', updateRecipes)
-
-
 // les tags devront aussi apparaitre dans l'index pour qu'ils soient aussi interconnecté avec tous les autres filtres
 
 // les filtres : dans le menu déroulant, l'ingrédient cliqué apparait en jaune et s'ajoute en tag sous la liste (index 0)
 // les filtres se créés en fonction des recettes déjà affichées et à partir des appareils etc de recipes.js
 // les filtres se mettent à jour à chaque fois que je clique sur un filtre car certaine recette vont disparaitre donc des ingrédients aussi
-// les filtres et la recherche doivent se cumuler
+
+
+
+// les filtres et la recherche doivent se cumuler !!!!!!!!

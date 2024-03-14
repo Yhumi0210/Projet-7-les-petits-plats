@@ -30,26 +30,6 @@ export function filterTemplate() {
         divSearchMini.appendChild(iconGlass)
         divFilterChoice.appendChild(divSearchResult)
 
-        // inputSearchMini.addEventListener('input', () => {
-        //     console.log("j'essaie de saisir du texte")
-        //     const searchText = inputSearchMini.value.trim().toLowerCase()
-        //     if (searchText.length >= 3) {
-        //         const filteredRecipes = searchRecipes(searchText)
-        //         updateRecipeDisplay(filteredRecipes)
-        //
-        //         // Mettre à jour les filtres en fonction des recettes filtrées
-        //         // getFiltersIngredients(filteredRecipes)
-        //         // getFiltersAppliances(filteredRecipes)
-        //         // getFiltersUstensils(filteredRecipes)
-        //     } else {
-        //             // Si le texte de recherche est vide, afficher toutes les recettes et mettre à jour les filtres
-        //             updateRecipeDisplay(recipes)
-        //             // getFiltersIngredients(recipes)
-        //             // getFiltersAppliances(recipes)
-        //             // getFiltersUstensils(recipes)
-        //     }
-        // })
-
         inputSearchMini.addEventListener('input', () => {
             const searchText = inputSearchMini.value.trim().toLowerCase()
             if (searchText.length >= 3) {
@@ -77,7 +57,6 @@ export function filterTemplate() {
                     pOptionElement.classList.add('yellow-choice')
                     elementCross.classList.add('fa-solid')
                     elementCross.classList.add('fa-circle-xmark')
-                    console.log("à quoi ça sert" + isApplied)
                 }
                 pOptionElement.addEventListener('click', (event) => {
                     const isSelected = pOptionElement.classList.contains('yellow-choice')
@@ -89,7 +68,6 @@ export function filterTemplate() {
                         elementCross.classList.add('fa-solid')
                         elementCross.classList.add('fa-circle-xmark')
                         getTag(nameFilter, item)
-                        console.log(pOptionElement.textContent)
                     } else {
                         pOptionElement.classList.remove('yellow-choice')
                         elementCross.classList.remove('fa-solid')
@@ -122,7 +100,6 @@ export function filterTemplate() {
                 pOptionElement.classList.add('yellow-choice')
                 elementCross.classList.add('fa-solid')
                 elementCross.classList.add('fa-circle-xmark')
-                console.log("à quoi ça sert" + isApplied)
             }
             pOptionElement.addEventListener('click', (event) => {
                 const isSelected = pOptionElement.classList.contains('yellow-choice')
@@ -132,7 +109,6 @@ export function filterTemplate() {
                     elementCross.classList.add('fa-solid')
                     elementCross.classList.add('fa-circle-xmark')
                     getTag(nameFilter, item)
-                    console.log(pOptionElement.textContent)
                 } else {
                     pOptionElement.classList.remove('yellow-choice')
                     elementCross.classList.remove('fa-solid')

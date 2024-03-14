@@ -12,6 +12,9 @@ export function showCounterRecipes(numDisplayedRecipes) {
     // Met à jour le contenu du compteur en fonction du nombre de recettes affichées
     if (numDisplayedRecipes > 0) {
         numberRecipe.textContent = `${numDisplayedRecipes} recettes`
+        if (numDisplayedRecipes === 1) {
+            numberRecipe.textContent = `${numDisplayedRecipes} recette`
+        }
     } else {
         numberRecipe.textContent = "Aucune recette disponible"
     }
@@ -22,7 +25,6 @@ export function countDisplayedRecipes(numDisplayedRecipes) {
     const recipeElements = document.querySelectorAll('.hero__container__recipe')
     const totalRecipes = recipeElements.length
 
-    console.log(totalRecipes)
     return totalRecipes
 }
 

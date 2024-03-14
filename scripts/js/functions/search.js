@@ -1,26 +1,26 @@
 import { recipes } from '../dataBase/recipes.js'
 import { recipeTemplate } from '../templates/recipeFactory.js'
 import { getFiltersAppliances, getFiltersIngredients, getFiltersUstensils } from '../index.js'
-import {filtersSelected, selectFilter, updateAllFilters} from './filters.js'
+import {filtersSelected, selectFilter, updateAllFilters, filterRecipesBySelectedFilters} from './filters.js'
 import { showCounterRecipes, countDisplayedRecipes } from './recipesCounter.js'
 
-export function filterRecipes(searchText) {
-    let filteredRecipes = recipes
-
-    // Filtrer les recettes en fonction de la recherche principale
-    if (searchText.trim() !== '') {
-        filteredRecipes = filteredRecipes.filter(recipe => {
-            return recipe.name.toLowerCase().includes(searchText.toLowerCase())
-                || recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(searchText.toLowerCase()))
-                || recipe.description.toLowerCase().includes(searchText.toLowerCase())
-        })
-    }
-
-    // Filtrer les recettes en fonction des filtres sélectionnés
-    // Ajoute ici la logique pour filtrer en fonction des filtres sélectionnés
-
-    return filteredRecipes
-}
+// export function filterRecipes(searchText) {
+//     let filteredRecipes = recipes
+//
+//     // Filtrer les recettes en fonction de la recherche principale
+//     if (searchText.trim() !== '') {
+//         filteredRecipes = filteredRecipes.filter(recipe => {
+//             return recipe.name.toLowerCase().includes(searchText.toLowerCase())
+//                 || recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(searchText.toLowerCase()))
+//                 || recipe.description.toLowerCase().includes(searchText.toLowerCase())
+//         })
+//     }
+//
+//     // Filtrer les recettes en fonction des filtres sélectionnés
+//     // Ajoute ici la logique pour filtrer en fonction des filtres sélectionnés
+//
+//     return filteredRecipes
+// }
 
 // Fonction pour filtrer les recettes en fonction de la recherche
 export function searchRecipes(searchText) {
@@ -36,6 +36,9 @@ export function searchRecipes(searchText) {
         return recipes
     }
 }
+
+// quand on lance la recherche, il faut voir si des filtres sont déjà appliqué,
+// si ils sont déjà appliqué, adapter les résultats en conséquence
 
 // affiche constamment le nombre de recettes affichées sur la page, même sans effectuer de recherche 
 document.addEventListener('DOMContentLoaded', function() {
@@ -57,7 +60,11 @@ function searchInput() {
     searchInput.addEventListener('input', () => {
 
         const searchText = searchInput.value
-        const filteredRecipes = searchRecipes(searchText)
+        let filteredRecipes = searchRecipes(searchText)
+        
+        if (filtersSelected.length) {
+            filteredRecipes = filterRecipesBySelectedFilters(filteredRecipes, filtersSelected)
+        }
         updateRecipeDisplay(filteredRecipes)
         getFiltersIngredients(filteredRecipes)
         getFiltersAppliances(filteredRecipes)

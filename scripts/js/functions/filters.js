@@ -1,12 +1,21 @@
 import {getFiltersAppliances, getFiltersIngredients, getFiltersUstensils} from '../index.js'
-import {filterRecipes, updateRecipeDisplay} from './search.js'
+import { searchRecipes, updateRecipeDisplay } from './search.js'
 import { recipes } from '../dataBase/recipes.js'
 import { showCounterRecipes, countDisplayedRecipes } from './recipesCounter.js'
 
 export let filtersSelected = []
 //Définissez une fonction pour mettre à jour tous les filtres en fonction des sélections actuelles
 export function updateAllFilters(selectedFilters) {
-    const filteredRecipes = filterRecipesBySelectedFilters(recipes, selectedFilters)
+    
+    let filteredRecipes = filterRecipesBySelectedFilters(recipes, selectedFilters)
+    const searchInput = document.getElementById('recipe-search')
+    console.log(searchInput.value)
+    
+    if (searchInput.value >= 3) {
+        filteredRecipes = searchRecipes(searchInput.value)
+        filteredRecipes = filterRecipesBySelectedFilters(filteredRecipes, selectedFilters)
+    }
+    
     getFiltersIngredients(filteredRecipes)
     getFiltersAppliances(filteredRecipes)
     getFiltersUstensils(filteredRecipes)
@@ -21,18 +30,20 @@ export function updateAllFilters(selectedFilters) {
 
 // Modifiez la fonction selectFilter pour synchroniser les sélections entre les filtres
 export const selectFilter = (type, value) => {
+    
     const isSelected = filtersSelected.find(filter => filter.type === type && filter.value === value)
     if (isSelected === undefined) {
         filtersSelected.push({ type: type, value: value })
     } else {
         filtersSelected = filtersSelected.filter(item => !(item.type === type && item.value === value))
     }
-    console.log(filtersSelected)
+    
     // Mettre à jour tous les filtres en fonction des sélections actuelles
     updateAllFilters(filtersSelected)
 }
 
-function filterRecipesBySelectedFilters(allRecipes, selectedFilters) {
+export function filterRecipesBySelectedFilters(allRecipes, selectedFilters) {
+    console.log(allRecipes)
     return allRecipes.filter(recipe => {
         return selectedFilters.every(filter => {
             if (filter.type === 'ingredient') {
@@ -46,23 +57,6 @@ function filterRecipesBySelectedFilters(allRecipes, selectedFilters) {
         })
     })
 }
-
-// export const selectFilter = (type, value) => {
-//     const isSelected = filtersSelected.find(filter => filter.type === type && filter.value === value)
-//     if (isSelected === undefined) {
-//         filtersSelected.push({ type: type, value: value })
-//     } else {
-//         filtersSelected = filtersSelected.filter(item => !(item.type === type && item.value === value))
-//     }
-//     console.log(filtersSelected)
-//     // Filtrer les recettes en fonction des filtres sélectionnés
-//     const filteredRecipes = filterRecipesBySelectedFilters(recipes, filtersSelected)
-//
-//     // Mettre à jour l'affichage des recettes avec les recettes filtrées
-//     updateRecipeDisplay(filteredRecipes)
-//     updateAllFilters(filtersSelected)
-//     console.log(filteredRecipes)
-// }
 
 // j'ouvre mon filtre, je choisis un ingrédient en cliquant sur un filtre
 // et mes recettes se filtrent en fonction.
