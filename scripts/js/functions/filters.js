@@ -13,7 +13,6 @@ export function updateAllFilters(selectedFilters) {
     
     if (searchInput.value.length >= 3) {
         filteredRecipes = searchRecipes(searchInput.value)
-        console.log("ça se fait la" + filteredRecipes)
         filteredRecipes = filterRecipesBySelectedFilters(filteredRecipes, selectedFilters)
     }
     
@@ -29,7 +28,7 @@ export function updateAllFilters(selectedFilters) {
     showCounterRecipes(numDisplayedRecipes)
 }
 
-// Modifiez la fonction selectFilter pour synchroniser les sélections entre les filtres
+
 export const selectFilter = (type, value) => {
     
     const isSelected = filtersSelected.find(filter => filter.type === type && filter.value === value)
@@ -39,12 +38,11 @@ export const selectFilter = (type, value) => {
         filtersSelected = filtersSelected.filter(item => !(item.type === type && item.value === value))
     }
     
-    // Mettre à jour tous les filtres en fonction des sélections actuelles
+    // Met à jour tous les filtres en fonction des sélections actuelles
     updateAllFilters(filtersSelected)
 }
 
 export function filterRecipesBySelectedFilters(allRecipes, selectedFilters) {
-    console.log(allRecipes)
     return allRecipes.filter(recipe => {
         return selectedFilters.every(filter => {
             if (filter.type === 'ingredient') {
@@ -62,11 +60,9 @@ export function filterRecipesBySelectedFilters(allRecipes, selectedFilters) {
 export function applyFilters() {
     let filteredRecipes = filterRecipesBySelectedFilters(recipes, filtersSelected)
     const search = document.getElementById('recipe-search')
-    console.log(search.value)
 
     if (search.value.length >= 3) {
         filteredRecipes = searchRecipes(search.value)
-        console.log("ça se fait la" + filteredRecipes)
         filteredRecipes = filterRecipesBySelectedFilters(filteredRecipes, filtersSelected)
     }
     

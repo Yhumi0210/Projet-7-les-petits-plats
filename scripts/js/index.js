@@ -1,9 +1,8 @@
 import { recipes } from './dataBase/recipes.js'
 import { recipeTemplate } from './templates/recipeFactory.js'
 import { filterTemplate } from './functions/filter-search.js'
-import {searchRecipes, updateRecipeDisplay} from './functions/search.js'
 import { addTagTemplate } from './templates/tagFactory.js'
-import {selectFilter,  filtersSelected, updateAllFilters, filterRecipesBySelectedFilters, applyFilters} from './functions/filters.js'
+import {selectFilter, applyFilters} from './functions/filters.js'
 import { showCounterRecipes } from './functions/recipesCounter.js'
 
 getRecipes()
@@ -212,25 +211,3 @@ export function removeTag(tag) {
         }
     })
 }
-
-// Définition de la fonction de callback
-function updateRecipes() {
-    const searchText = document.getElementById('recipe-search').value
-    const filteredRecipes = searchRecipes(searchText)
-    updateRecipeDisplay(filteredRecipes)
-
-    // Mettre à jour les filtres lorsque la recherche principale est modifiée
-    getFiltersIngredients()
-    getFiltersAppliances()
-    getFiltersUstensils()
-}
-
-// les tags devront aussi apparaitre dans l'index pour qu'ils soient aussi interconnecté avec tous les autres filtres
-
-// les filtres : dans le menu déroulant, l'ingrédient cliqué apparait en jaune et s'ajoute en tag sous la liste (index 0)
-// les filtres se créés en fonction des recettes déjà affichées et à partir des appareils etc de recipes.js
-// les filtres se mettent à jour à chaque fois que je clique sur un filtre car certaine recette vont disparaitre donc des ingrédients aussi
-
-
-
-// les filtres et la recherche doivent se cumuler !!!!!!!!

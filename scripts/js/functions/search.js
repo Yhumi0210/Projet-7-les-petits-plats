@@ -1,26 +1,8 @@
 import { recipes } from '../dataBase/recipes.js'
 import { recipeTemplate } from '../templates/recipeFactory.js'
 import { getFiltersAppliances, getFiltersIngredients, getFiltersUstensils } from '../index.js'
-import {filtersSelected, selectFilter, updateAllFilters, filterRecipesBySelectedFilters} from './filters.js'
+import {filtersSelected, filterRecipesBySelectedFilters} from './filters.js'
 import { showCounterRecipes, countDisplayedRecipes } from './recipesCounter.js'
-
-// export function filterRecipes(searchText) {
-//     let filteredRecipes = recipes
-//
-//     // Filtrer les recettes en fonction de la recherche principale
-//     if (searchText.trim() !== '') {
-//         filteredRecipes = filteredRecipes.filter(recipe => {
-//             return recipe.name.toLowerCase().includes(searchText.toLowerCase())
-//                 || recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(searchText.toLowerCase()))
-//                 || recipe.description.toLowerCase().includes(searchText.toLowerCase())
-//         })
-//     }
-//
-//     // Filtrer les recettes en fonction des filtres sélectionnés
-//     // Ajoute ici la logique pour filtrer en fonction des filtres sélectionnés
-//
-//     return filteredRecipes
-// }
 
 // Fonction pour filtrer les recettes en fonction de la recherche
 export function searchRecipes(searchText) {
@@ -57,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function searchInput() {
     
     const searchInput = document.getElementById('recipe-search')
+    const recipeContainer = document.querySelector('.hero')
 
     searchInput.addEventListener('input', () => {
 
@@ -70,39 +53,21 @@ function searchInput() {
 
         if (filteredRecipes.length === 0) {
             // Si aucune recette n'est trouvée, affiche un message
-            //showNoRecipesMessage()
+            recipeContainer.innerHTML = `<div class="sort__counter">Aucune recette ne contient « ${searchInput.value} » vous pouvez chercher « tarte aux pommes », « poisson », etc.</div>`
         } else {
             // Si des recettes sont trouvées, affiche les cartes recettes
-            //hideNoRecipesMessage()
             getFiltersIngredients()
             getFiltersAppliances()
             getFiltersUstensils()
-
-            // Calcule le nombre de recettes affichées
-            const numDisplayedRecipes = countDisplayedRecipes()
-
-            // Met à jour le compteur de recettes
-            showCounterRecipes(numDisplayedRecipes)
         }
-        
+
+        // Calcule le nombre de recettes affichées
+        const numDisplayedRecipes = countDisplayedRecipes()
+
+        // Met à jour le compteur de recettes
+        showCounterRecipes(numDisplayedRecipes)
     })
 }
-
-// function showNoRecipesMessage() {
-//     const errorRecipe = document.querySelector('.hero')
-//     const messageElement = document.createElement('div')
-//     messageElement.setAttribute('id', 'no-recipes-message')
-//     messageElement.textContent = ``
-//     messageElement.style.display = 'block'
-//    
-//     errorRecipe.appendChild(messageElement)
-// }
-//
-// function hideNoRecipesMessage() {
-//    
-//     const messageElement = document.getElementById('no-recipes-message')
-//     messageElement.style.display = 'none'
-// }
 
 // Fonction pour mettre à jour l'affichage des recettes
 export function updateRecipeDisplay(filteredRecipes) {

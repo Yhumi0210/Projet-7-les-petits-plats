@@ -1,6 +1,4 @@
-import { recipes } from '../dataBase/recipes.js'
-import {searchRecipes, updateRecipeDisplay} from './search.js'
-import {getFiltersAppliances, getFiltersIngredients, getFiltersUstensils, getTag, removeTag } from '../index.js'
+import { getTag, removeTag } from '../index.js'
 import { selectFilter, filtersSelected } from './filters.js'
 
 export function filterTemplate() {
@@ -73,7 +71,7 @@ export function filterTemplate() {
                     elementCross.classList.add('fa-solid')
                     elementCross.classList.add('fa-circle-xmark')
                 }
-                pOptionElement.addEventListener('click', (event) => {
+                pOptionElement.addEventListener('click', () => {
                     const isSelected = pOptionElement.classList.contains('yellow-choice')
                     selectFilter(nameFilter, item)
                     // si je laisse selectFilter, ma liste de filtre se reset malgré l'input

@@ -16,11 +16,11 @@ export function showCounterRecipes(numDisplayedRecipes) {
             numberRecipe.textContent = `${numDisplayedRecipes} recette`
         }
     } else {
-        numberRecipe.textContent = "Aucune recette disponible"
+        numberRecipe.textContent = 'Aucune recette disponible'
     }
 }
 
-export function countDisplayedRecipes(numDisplayedRecipes) {
+export function countDisplayedRecipes() {
     // Compte le nombre total de recettes
     const recipeElements = document.querySelectorAll('.hero__container__recipe')
     const totalRecipes = recipeElements.length

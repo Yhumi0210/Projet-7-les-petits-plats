@@ -1,5 +1,3 @@
-import {recipes} from '../dataBase/recipes.js'
-
 export function recipeTemplate() {
     function getRecipeDOM(recipe) {
         const cardRecipe = document.querySelector('.hero')
