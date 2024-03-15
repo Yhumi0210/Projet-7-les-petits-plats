@@ -3,7 +3,7 @@ import { recipeTemplate } from './templates/recipeFactory.js'
 import { filterTemplate } from './functions/filter-search.js'
 import {searchRecipes, updateRecipeDisplay} from './functions/search.js'
 import { addTagTemplate } from './templates/tagFactory.js'
-import {selectFilter,  filtersSelected, updateAllFilters, filterRecipesBySelectedFilters} from './functions/filters.js'
+import {selectFilter,  filtersSelected, updateAllFilters, filterRecipesBySelectedFilters, applyFilters} from './functions/filters.js'
 import { showCounterRecipes } from './functions/recipesCounter.js'
 
 getRecipes()
@@ -24,11 +24,12 @@ function getRecipes() {
     
 }
 
-export function getFiltersIngredients(filteredRecipes)
+export function getFiltersIngredients()
 {
     const cardFilter = document.getElementById('ingredients-choice')
     cardFilter.innerHTML = ''
 
+    const filteredRecipes = applyFilters()
     const getIngredients = () => {
         const ingredients = []
         filteredRecipes.forEach(recipe => {
@@ -51,9 +52,11 @@ export function getFiltersIngredients(filteredRecipes)
     cardFilter.appendChild(filterDOM)
 }
 
-export function getFiltersAppliances(filteredRecipes) {
+export function getFiltersAppliances() {
     const cardFilter = document.getElementById('appliance-choice')
     cardFilter.innerHTML = ''
+
+    const filteredRecipes = applyFilters()
     const getAppliances = () => {
         const appliances = []
         filteredRecipes.forEach(recipe => {
@@ -71,9 +74,11 @@ export function getFiltersAppliances(filteredRecipes) {
         
 }
 
-export function getFiltersUstensils(filteredRecipes) {
+export function getFiltersUstensils() {
     const cardFilter = document.getElementById('ustensil-choice')
     cardFilter.innerHTML = ''
+
+    const filteredRecipes = applyFilters()
     const getUstensils = () => {
         const ustensils = []
         filteredRecipes.forEach(recipe => {
@@ -116,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 arrowElement.classList.add('sort__filter__categories__arrow__up')
                 divIngredient.classList.add('open')
-                getFiltersIngredients(recipes)
+                getFiltersIngredients()
                 ingredientOpened = true
             }            
         }
@@ -135,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 arrowElement.classList.add('sort__filter__categories__arrow__up')
                 divAppliance.classList.add('open')
-                getFiltersAppliances(recipes)
+                getFiltersAppliances()
                 applianceOpened = true
             }
         }
@@ -154,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 arrowElement.classList.add('sort__filter__categories__arrow__up')
                 divUstensil.classList.add('open')
-                getFiltersUstensils(recipes)
+                getFiltersUstensils()
                 ustensilOpened = true
             }
         }
@@ -171,13 +176,13 @@ export function getTag(type, tag) {
         selectFilter(type, tag)
         cardTag.removeChild(tagDOM)
         if (type === 'ingredient') {
-            getFiltersIngredients(recipes)
+            getFiltersIngredients()
         }
         if (type === 'appliance') {
-            getFiltersAppliances(recipes)
+            getFiltersAppliances()
         }
         if (type === 'ustensil') {
-            getFiltersUstensils(recipes)
+            getFiltersUstensils()
         }
     })
 
@@ -215,9 +220,9 @@ function updateRecipes() {
     updateRecipeDisplay(filteredRecipes)
 
     // Mettre à jour les filtres lorsque la recherche principale est modifiée
-    getFiltersIngredients(filteredRecipes)
-    getFiltersAppliances(filteredRecipes)
-    getFiltersUstensils(filteredRecipes)
+    getFiltersIngredients()
+    getFiltersAppliances()
+    getFiltersUstensils()
 }
 
 // les tags devront aussi apparaitre dans l'index pour qu'ils soient aussi interconnecté avec tous les autres filtres

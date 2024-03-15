@@ -45,6 +45,21 @@ export function filterTemplate() {
 //cette fonction sert à update la liste
         function updateSearchResults(list) {
             divSearchResult.innerHTML = ''
+            displayListFilter(list)
+        }
+
+        iconCross.addEventListener('click', () => {
+            inputSearchMini.value = ''
+            updateSearchResults(filters)
+        })
+
+// cette fonction sert à afficher constamment la liste
+        function alwaysShowFilterList(filters) {
+            displayListFilter(filters)
+        }
+        alwaysShowFilterList(filters)
+        
+        function displayListFilter(list) {
             list.forEach(item => {
                 const pOptionElement = document.createElement('p')
                 const elementCross = document.createElement('i')
@@ -60,7 +75,7 @@ export function filterTemplate() {
                 }
                 pOptionElement.addEventListener('click', (event) => {
                     const isSelected = pOptionElement.classList.contains('yellow-choice')
-                    //selectFilter(nameFilter, item)
+                    selectFilter(nameFilter, item)
                     // si je laisse selectFilter, ma liste de filtre se reset malgré l'input
                     // mais si je l'enlève, les éléments ne sont pas pris dans le tableau
                     if (!isSelected) {
@@ -79,46 +94,6 @@ export function filterTemplate() {
                 })
             })
         }
-
-        iconCross.addEventListener('click', () => {
-            inputSearchMini.value = ''
-            updateSearchResults(filters)
-        })
-
-// cette fonction sert à afficher constamment la liste
-        
-        filters.forEach(item => {
-            const pOptionElement = document.createElement('p')
-            const elementCross = document.createElement('i')
-            pOptionElement.className = 'search-mini__result__choices'
-            pOptionElement.textContent = item
-            divSearchResult.appendChild(pOptionElement)
-            pOptionElement.appendChild(elementCross)
-            
-            const isApplied = filtersSelected.find( filter => filter.type === nameFilter && filter.value === item)
-            if (isApplied) {
-                pOptionElement.classList.add('yellow-choice')
-                elementCross.classList.add('fa-solid')
-                elementCross.classList.add('fa-circle-xmark')
-            }
-            pOptionElement.addEventListener('click', (event) => {
-                const isSelected = pOptionElement.classList.contains('yellow-choice')
-                selectFilter(nameFilter, item)
-                if (!isSelected) {
-                    pOptionElement.classList.add('yellow-choice')
-                    elementCross.classList.add('fa-solid')
-                    elementCross.classList.add('fa-circle-xmark')
-                    getTag(nameFilter, item)
-                } else {
-                    pOptionElement.classList.remove('yellow-choice')
-                    elementCross.classList.remove('fa-solid')
-                    elementCross.classList.remove('fa-circle-xmark')
-                    
-                    // ici je gére la suppression du tag quand on clique
-                    removeTag(item)
-                }
-            })
-        })
         
         return divFilterChoice
     }

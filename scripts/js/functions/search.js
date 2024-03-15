@@ -26,12 +26,13 @@ import { showCounterRecipes, countDisplayedRecipes } from './recipesCounter.js'
 export function searchRecipes(searchText) {
     
     if (searchText.length >= 3) {
+        
         const searchFilteredRecipes = recipes.filter(recipe => {
             return recipe.name.toLowerCase().includes(searchText.toLowerCase())
                 || recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(searchText.toLowerCase()))
                 || recipe.description.toLowerCase().includes(searchText.toLowerCase())
         })
-        return searchFilteredRecipes
+            return searchFilteredRecipes
     } else {
         return recipes
     }
@@ -66,17 +67,42 @@ function searchInput() {
             filteredRecipes = filterRecipesBySelectedFilters(filteredRecipes, filtersSelected)
         }
         updateRecipeDisplay(filteredRecipes)
-        getFiltersIngredients(filteredRecipes)
-        getFiltersAppliances(filteredRecipes)
-        getFiltersUstensils(filteredRecipes)
 
-        // Calcule le nombre de recettes affichées
-        const numDisplayedRecipes = countDisplayedRecipes()
+        if (filteredRecipes.length === 0) {
+            // Si aucune recette n'est trouvée, affiche un message
+            //showNoRecipesMessage()
+        } else {
+            // Si des recettes sont trouvées, affiche les cartes recettes
+            //hideNoRecipesMessage()
+            getFiltersIngredients()
+            getFiltersAppliances()
+            getFiltersUstensils()
 
-        // Met à jour le compteur de recettes
-        showCounterRecipes(numDisplayedRecipes)
+            // Calcule le nombre de recettes affichées
+            const numDisplayedRecipes = countDisplayedRecipes()
+
+            // Met à jour le compteur de recettes
+            showCounterRecipes(numDisplayedRecipes)
+        }
+        
     })
 }
+
+// function showNoRecipesMessage() {
+//     const errorRecipe = document.querySelector('.hero')
+//     const messageElement = document.createElement('div')
+//     messageElement.setAttribute('id', 'no-recipes-message')
+//     messageElement.textContent = ``
+//     messageElement.style.display = 'block'
+//    
+//     errorRecipe.appendChild(messageElement)
+// }
+//
+// function hideNoRecipesMessage() {
+//    
+//     const messageElement = document.getElementById('no-recipes-message')
+//     messageElement.style.display = 'none'
+// }
 
 // Fonction pour mettre à jour l'affichage des recettes
 export function updateRecipeDisplay(filteredRecipes) {

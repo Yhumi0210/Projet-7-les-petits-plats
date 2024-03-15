@@ -11,14 +11,15 @@ export function updateAllFilters(selectedFilters) {
     const searchInput = document.getElementById('recipe-search')
     console.log(searchInput.value)
     
-    if (searchInput.value >= 3) {
+    if (searchInput.value.length >= 3) {
         filteredRecipes = searchRecipes(searchInput.value)
+        console.log("ça se fait la" + filteredRecipes)
         filteredRecipes = filterRecipesBySelectedFilters(filteredRecipes, selectedFilters)
     }
     
-    getFiltersIngredients(filteredRecipes)
-    getFiltersAppliances(filteredRecipes)
-    getFiltersUstensils(filteredRecipes)
+    getFiltersIngredients()
+    getFiltersAppliances()
+    getFiltersUstensils()
     updateRecipeDisplay(filteredRecipes)
 
     // Calcule le nombre de recettes affichées
@@ -56,6 +57,20 @@ export function filterRecipesBySelectedFilters(allRecipes, selectedFilters) {
             return false
         })
     })
+}
+
+export function applyFilters() {
+    let filteredRecipes = filterRecipesBySelectedFilters(recipes, filtersSelected)
+    const search = document.getElementById('recipe-search')
+    console.log(search.value)
+
+    if (search.value.length >= 3) {
+        filteredRecipes = searchRecipes(search.value)
+        console.log("ça se fait la" + filteredRecipes)
+        filteredRecipes = filterRecipesBySelectedFilters(filteredRecipes, filtersSelected)
+    }
+    
+    return filteredRecipes
 }
 
 // j'ouvre mon filtre, je choisis un ingrédient en cliquant sur un filtre
