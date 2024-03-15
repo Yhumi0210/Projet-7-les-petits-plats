@@ -1,5 +1,6 @@
 import { recipes } from '../dataBase/recipes.js'
 import { recipeTemplate } from '../templates/recipeFactory.js'
+import {showCounterRecipes, countDisplayedRecipes} from './recipes.counter.js'
 
 // Fonction pour filtrer les recettes en fonction de la recherche
 function searchRecipes(searchText) {
@@ -38,8 +39,25 @@ function searchInput() {
         const searchText = searchInput.value
         const filteredRecipes = searchRecipes(searchText)
         updateRecipeDisplay(filteredRecipes)
+        // Calcule le nombre de recettes affichées
+        const numDisplayedRecipes = countDisplayedRecipes()
+
+        // Met à jour le compteur de recettes
+        showCounterRecipes(numDisplayedRecipes)
     })
 }
+
+// affiche constamment le nombre de recettes affichées sur la page, même sans effectuer de recherche 
+document.addEventListener('DOMContentLoaded', function() {
+    // Calcul du nombre total de recettes
+    const totalRecipes = recipes.length
+
+    // Affichage initial du compteur de recettes
+    showCounterRecipes(totalRecipes)
+
+    // Appel de la fonction pour gérer les événements de saisie
+    searchInput()
+})
 
 // Appel de la fonction pour gérer les événements de saisie
 searchInput()

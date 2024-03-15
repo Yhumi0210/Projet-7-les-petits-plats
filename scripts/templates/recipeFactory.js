@@ -31,7 +31,7 @@ export function recipeTemplate() {
 
         imgRecipe.setAttribute('alt', `${recipe.name}`)
         imgRecipe.setAttribute('src', recipe.image)
-        pTimeRecipe.innerHTML = `${recipe.time}`
+        pTimeRecipe.innerHTML = `${recipe.time} min`
         h2TitleRecipe.innerHTML = `${recipe.name}`
         h3Recipe.innerHTML = 'Recette'
         pRecipeCook.innerHTML = `${recipe.description}`
