@@ -8,7 +8,7 @@ import { showCounterRecipes } from './functions/recipesCounter.js'
 getRecipes()
 
 
-// sert à récupérer 
+// sert à récupérer les recettes depuis recipes.js
 function getRecipes() {
 
     const cardRecipe = document.querySelector('.hero')
