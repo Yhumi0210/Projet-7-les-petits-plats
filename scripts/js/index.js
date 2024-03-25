@@ -44,6 +44,7 @@ export function getFiltersIngredients()
     //     const ingredients = filteredRecipes.flatMap(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient.toLowerCase())).filter((ingredient, index, array) => array.indexOf(ingredient) === index)
     //     return ingredients
     // }
+
     const allIngredients = getIngredients()
 
     const filterModel = filterTemplate()

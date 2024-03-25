@@ -9,7 +9,6 @@ export function updateAllFilters(selectedFilters) {
     
     let filteredRecipes = filterRecipesBySelectedFilters(recipes, selectedFilters)
     const searchInput = document.getElementById('recipe-search')
-    console.log(searchInput.value)
     
     if (searchInput.value.length >= 3) {
         filteredRecipes = searchRecipes(searchInput.value)
