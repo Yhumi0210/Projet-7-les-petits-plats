@@ -7,10 +7,8 @@ import { showCounterRecipes } from './functions/recipesCounter.js'
 
 getRecipes()
 
-
 // sert à récupérer les recettes depuis recipes.js
 function getRecipes() {
-
     const cardRecipe = document.querySelector('.hero')
     cardRecipe.textContent = ''
 
@@ -20,11 +18,9 @@ function getRecipes() {
         cardRecipe.appendChild(recipeDOM)
     }
     showCounterRecipes()
-    
 }
 
-export function getFiltersIngredients()
-{
+export function getFiltersIngredients() {
     const cardFilter = document.getElementById('ingredients-choice')
     cardFilter.innerHTML = ''
 
@@ -40,10 +36,6 @@ export function getFiltersIngredients()
         })
         return ingredients
     }
-    // const getIngredients = () => {
-    //     const ingredients = filteredRecipes.flatMap(recipe => recipe.ingredients.map(ingredient => ingredient.ingredient.toLowerCase())).filter((ingredient, index, array) => array.indexOf(ingredient) === index)
-    //     return ingredients
-    // }
 
     const allIngredients = getIngredients()
 
