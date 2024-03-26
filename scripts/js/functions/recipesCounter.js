@@ -2,7 +2,7 @@ export function showCounterRecipes(numDisplayedRecipes) {
     const counterContainer = document.getElementById('counter-recipes')
     let numberRecipe = document.getElementById('recipe-counter')
 
-    // Si le compteur n'existe pas encore dans le DOM, crée-le et ajoute-le au conteneur
+    // Si le compteur n'existe pas encore dans le DOM, il est créé et ajouté
     if (!numberRecipe) {
         numberRecipe = document.createElement('span')
         numberRecipe.id = 'recipe-counter'
@@ -27,6 +27,3 @@ export function countDisplayedRecipes() {
 
     return totalRecipes
 }
-
-// penser à faire une condition qui ferait que recette serait
-// écrit au pluriel lorsqu'il y aurait plusieurs recettes affichées et sinon faire l'inverse

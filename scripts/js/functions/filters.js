@@ -4,7 +4,8 @@ import { recipes } from '../dataBase/recipes.js'
 import { showCounterRecipes, countDisplayedRecipes } from './recipesCounter.js'
 
 export let filtersSelected = []
-//Définissez une fonction pour mettre à jour tous les filtres en fonction des sélections actuelles
+
+//Cette fonction met à jour tous les filtres en fonction des sélections actuelles
 export function updateAllFilters(selectedFilters) {
     
     let filteredRecipes = filterRecipesBySelectedFilters(recipes, selectedFilters)
@@ -67,8 +68,3 @@ export function applyFilters() {
     
     return filteredRecipes
 }
-
-// j'ouvre mon filtre, je choisis un ingrédient en cliquant sur un filtre
-// et mes recettes se filtrent en fonction.
-
-// comme mes recettes se mettent à jour, les filtres se mettent à jour aussimes recettes se mettent à jour, les filtres se mettent à jour aussi

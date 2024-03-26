@@ -166,7 +166,7 @@ export function getTag(type, tag) {
 
     tagDOM.addEventListener('click', () => {
         selectFilter(type, tag)
-        cardTag.removeChild(tagDOM)
+        cardTag.removeChild(tagDOM) // sert à supprimer le tag de l'interface
         if (type === 'ingredient') {
             getFiltersIngredients()
         }
@@ -186,21 +186,6 @@ export function removeTag(tag) {
     tags.forEach(tagElement => {
         if (tagElement.textContent === tag) {
             tagElement.remove()
-        }
-    })
-
-    const cardFilters = document.querySelectorAll('.sort__filter__categories__arrow__up')
-    cardFilters.forEach(filter => {
-        if (filter.nextElementSibling) {
-            const filterList = filter.nextElementSibling.querySelector('.search-mini__result')
-            if (filterList) {
-                const filterItems = filterList.querySelectorAll('.search-mini__result__choices')
-                filterItems.forEach(item => {
-                    if (item.textContent === tag) {
-                        item.classList.remove('yellow-choice')
-                    }
-                })
-            }
         }
     })
 }

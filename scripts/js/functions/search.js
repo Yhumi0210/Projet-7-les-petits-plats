@@ -6,9 +6,8 @@ import { showCounterRecipes, countDisplayedRecipes } from './recipesCounter.js'
 
 // Fonction pour filtrer les recettes en fonction de la recherche
 export function searchRecipes(searchText) {
-    
+    const lowerSearchText = searchText.toLowerCase()
     if (searchText.length >= 3) {
-        const lowerSearchText = searchText.toLowerCase()
         const searchFilteredRecipes = recipes.filter(recipe => {
             return recipe.name.toLowerCase().includes(lowerSearchText)
                 || recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(lowerSearchText))
@@ -19,9 +18,6 @@ export function searchRecipes(searchText) {
         return recipes
     }
 }
-
-// quand on lance la recherche, il faut voir si des filtres sont déjà appliqué,
-// si ils sont déjà appliqué, adapter les résultats en conséquence
 
 // affiche constamment le nombre de recettes affichées sur la page, même sans effectuer de recherche 
 document.addEventListener('DOMContentLoaded', function() {
@@ -53,7 +49,8 @@ function searchInput() {
 
         if (filteredRecipes.length === 0) {
             // Si aucune recette n'est trouvée, affiche un message
-            recipeContainer.innerHTML = `<div class="sort__counter">Aucune recette ne contient « ${searchInput.value} » vous pouvez chercher « tarte aux pommes », « poisson », etc.</div>`
+            recipeContainer.innerHTML = `<div class="sort__counter">Aucune recette ne contient « ${searchInput.value} » 
+            vous pouvez chercher « tarte aux pommes », « poisson », etc.</div>`
         } else {
             // Si des recettes sont trouvées, affiche les cartes recettes
             getFiltersIngredients()

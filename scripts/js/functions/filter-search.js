@@ -74,8 +74,6 @@ export function filterTemplate() {
                 pOptionElement.addEventListener('click', () => {
                     const isSelected = pOptionElement.classList.contains('yellow-choice')
                     selectFilter(nameFilter, item)
-                    // si je laisse selectFilter, ma liste de filtre se reset malgré l'input
-                    // mais si je l'enlève, les éléments ne sont pas pris dans le tableau
                     if (!isSelected) {
                         pOptionElement.classList.add('yellow-choice')
                         elementCross.classList.add('fa-solid')
